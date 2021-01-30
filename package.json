@@ -2,9 +2,10 @@
   "name": "event-manager-node",
   "version": "1.0.0",
   "description": "event management app",
-  "main": "index.js",
+  "main": "src/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon src/server.js",
+    "start": "node src/server.js"
   },
   "repository": {
     "type": "git",
@@ -18,5 +19,11 @@
   "bugs": {
     "url": "https://github.com/caleb-42/event-manager-node/issues"
   },
-  "homepage": "https://github.com/caleb-42/event-manager-node#readme"
+  "homepage": "https://github.com/caleb-42/event-manager-node#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
 }
