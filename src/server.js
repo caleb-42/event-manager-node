@@ -7,8 +7,6 @@ const { serveStaticFiles } = require("./utils/index");
 
 dotenv.config();
 
-const assetPattern = /^\/[a-zA-Z0-9]+.[a-zA-Z]+/;
-
 const server = http.createServer(function (req, res) {
   //console.log(req.url);
   let parsedURL = urlPackage.parse(req.url, true);
@@ -21,7 +19,7 @@ const server = http.createServer(function (req, res) {
   console.log("path", path);
 
   const { url } = req;
-  if (url.match(assetPattern)) {
+  if (/^\/[a-zA-Z0-9]+\.[a-zA-Z]+/.test(url)) {
     return serveStaticFiles(url, res);
   } else if (path == "") return serveStaticFiles("/index.html", res);
 
@@ -36,8 +34,8 @@ const server = http.createServer(function (req, res) {
   req.on("end", function () {
     //request part is finished... we can send a response now
     console.log("send a response");
-    let body = parse(payload);
-    console.log(body);
+    //let body = parse(payload);
+    console.log(payload);
     //we will use the standardized version of the path
     let route =
       typeof routes[path] !== "undefined" ? routes[path] : routes["notFound"];
@@ -45,8 +43,8 @@ const server = http.createServer(function (req, res) {
       path: path,
       queryString: qs,
       headers: headers,
-      method: method,
-      body,
+      method: method.toUpperCase(),
+      body: JSON.parse(payload),
     };
     //pass data incase we need info about the request
     //pass the response object because router is outside our scope
