@@ -5,6 +5,10 @@
   "main": "src/server.js",
   "scripts": {
     "dev": "nodemon src/server.js",
+    "migrate": "psql -d event_manager_test -U postgres -f src/database/db.sql",
+    "seed": "psql -d event_manager_test -U postgres -f src/database/dbSeed.sql",
+    "dropDB": "psql -d event_manager_test -U postgres -f src/database/dropDb.sql",
+    "recreateDB": "npm run dropDB && npm run migrate && npm run seed",
     "start": "node src/server.js"
   },
   "repository": {
@@ -21,7 +25,10 @@
   },
   "homepage": "https://github.com/caleb-42/event-manager-node#readme",
   "dependencies": {
-    "dotenv": "^8.2.0"
+    "axios": "^0.21.1",
+    "dotenv": "^8.2.0",
+    "lodash": "^4.17.20",
+    "pg": "^8.5.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.7"
