@@ -2,3 +2,4 @@ PORT=3000
 API_KEY= // api key to get generated photos https://generated.photos/
 DATABASE_TEST= // test db connection string
 DATABASE_URL= // production db connection string
+JWT_SECRET= //jsonwebtoken secret

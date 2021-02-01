@@ -15,6 +15,7 @@ const methods = {
 };
 
 module.exports = async function (data, res) {
+  console.log(":asasa");
   if (methods[data.method]) {
     return methods[data.method](data, res);
   } else {

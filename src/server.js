@@ -4,6 +4,7 @@ const routes = require("./routes");
 const dotenv = require("dotenv");
 const { parse } = require("querystring");
 const { serveStaticFiles } = require("./utils/index");
+const { authMiddleware } = require("./middlewares/auth");
 
 dotenv.config();
 
@@ -35,7 +36,6 @@ const server = http.createServer(function (req, res) {
     //request part is finished... we can send a response now
     console.log("send a response");
     //let body = parse(payload);
-    console.log(payload);
     //we will use the standardized version of the path
     let route =
       typeof routes[path] !== "undefined" ? routes[path] : routes["notFound"];
