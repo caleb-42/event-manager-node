@@ -2,12 +2,12 @@ const pathPackage = require("path");
 const fs = require("fs");
 const axios = require("axios");
 const dotenv = require("dotenv");
+const jwt = require("jsonwebtoken");
 const constants = require("./constants");
 
 dotenv.config();
 
-const { API_KEY } = process.env;
-
+const { API_KEY, JWT_SECRET } = process.env;
 const utils = {};
 
 utils.serveStaticFiles = function (url, res) {
@@ -105,8 +105,8 @@ utils.formatSpeakers = async (spkrs) => {
 
 utils.notFound = function (data, res) {
   let payload = {
-    message: "resource not Found",
-    code: 404,
+    error: "resource not Found",
+    status: 404,
   };
   let payloadStr = JSON.stringify(payload);
   res.setHeader("Content-Type", "application/json");
@@ -115,6 +115,27 @@ utils.notFound = function (data, res) {
 
   res.write(payloadStr);
   res.end("\n");
+};
+
+utils.response = function (res, payload) {
+  let payloadStr = JSON.stringify(payload);
+  res.setHeader("Content-Type", "application/json");
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.writeHead(payload.status);
+
+  res.write(payloadStr);
+  res.end("\n");
+};
+
+utils.generateJWT = (user) => jwt.sign(user, JWT_SECRET);
+
+utils.verifyJWT = (token) => {
+  try {
+    let val = jwt.verify(token, JWT_SECRET);
+    return val;
+  } catch (e) {
+    return null;
+  }
 };
 
 module.exports = utils;

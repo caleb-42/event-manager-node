@@ -17,21 +17,17 @@ class DbHandler {
 
   async find(table, body, query, key = null) {
     /* find any record in database */
-    try {
-      const param = [];
-      if (!key) key = query;
-      let str = `SELECT * = ${table} WHERE`;
-      query.forEach((elem, index) => {
-        str += ` ${elem} = $${index + 1}`;
-        if (query.length - 1 > index) str += " AND";
-        param.push(body[key[index]]);
-      });
-      const { rows } = await this.pool.query(str, param);
-      return rows[0];
-    } catch (e) {
-      console.error(e);
-      return 500;
-    }
+    const param = [];
+    if (!key) key = query;
+    let str = `SELECT * FROM ${table} WHERE`;
+    query.forEach((elem, index) => {
+      str += ` ${elem} = $${index + 1}`;
+      if (query.length - 1 > index) str += " AND";
+      param.push(body[key[index]]);
+    });
+    console.log(str, param);
+    const { rows } = await this.pool.query(str, param);
+    return rows[0];
   }
 
   async createEvent(newEvent) {
