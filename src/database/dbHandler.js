@@ -1,8 +1,6 @@
 const dotenv = require("dotenv");
-const _ = require("lodash");
-const axios = require("axios");
 const { Pool } = require("pg");
-const { formatSpeakers } = require("../utils");
+const EventDbHandler = require("./eventDbHandler");
 
 dotenv.config();
 
@@ -13,10 +11,10 @@ class DbHandler {
     this.pool = new Pool({
       connectionString: NODE_ENV === "PROD" ? DATABASE_URL : DATABASE_TEST,
     });
+    this.event = new EventDbHandler(this.pool);
   }
 
   async find(table, body, query, key = null) {
-    /* find any record in database */
     const param = [];
     if (!key) key = query;
     let str = `SELECT * FROM ${table} WHERE`;
@@ -27,32 +25,7 @@ class DbHandler {
     });
     console.log(str, param);
     const { rows } = await this.pool.query(str, param);
-    return rows[0];
-  }
-
-  async createEvent(newEvent) {
-    const _event = _.pick(newEvent, [
-      "admin_id",
-      "name",
-      "description",
-      "speakers",
-      "start_date",
-      "end_date",
-    ]);
-    _event.speakers = await formatSpeakers(_event.speakers);
-    try {
-      const { rows } = await this.pool.query(
-        `INSERT INTO events (
-        admin_id, name, description, speakers, start_date, end_date) 
-        VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`,
-        Object.values(_event)
-      );
-      const createdEvent = rows[0];
-      return createdEvent;
-    } catch (err) {
-      console.log(err);
-      return 500;
-    }
+    return rows.length === 0 ? null : rows[0];
   }
 }
 
