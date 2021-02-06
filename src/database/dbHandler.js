@@ -1,6 +1,7 @@
 const dotenv = require("dotenv");
 const { Pool } = require("pg");
 const EventDbHandler = require("./eventDbHandler");
+const EventTypeDbHandler = require("./eventTypeDbHandler");
 
 dotenv.config();
 
@@ -12,6 +13,7 @@ class DbHandler {
       connectionString: NODE_ENV === "PROD" ? DATABASE_URL : DATABASE_TEST,
     });
     this.event = new EventDbHandler(this.pool);
+    this.eventType = new EventTypeDbHandler(this.pool);
   }
 
   async find(table, body, query, key = null) {

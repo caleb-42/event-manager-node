@@ -6,6 +6,13 @@ module.exports = class EventDbHandler {
     this.pool = pool;
   }
 
+  async searchEvent(val) {
+    const { rows } = await this.pool.query(
+      `SELECT events.id, events.name, events.description, events.start_date, events.end_date FROM events WHERE name LIKE '%${val}%' OR description LIKE '%${val}%'`
+    );
+    return rows;
+  }
+
   async createEvent(newEvent) {
     const _event = _.pick(newEvent, [
       "admin_id",
