@@ -1,0 +1,55 @@
+const { values } = require("lodash");
+const _ = require("lodash");
+
+module.exports = class RegistrationDbHandler {
+  constructor(pool) {
+    this.pool = pool;
+  }
+
+  async createRegistration(newEventType) {
+    const _registration = _.pick(newEventType, [
+      "email",
+      "notified",
+      "event_id",
+    ]);
+    const { rows } = await this.pool.query(
+      `INSERT INTO registrations (email, notified, event_id) 
+        VALUES ($1, $2, $3) RETURNING *`,
+      Object.values(_registration)
+    );
+    const createdRegistration = rows[0];
+    return createdRegistration;
+  }
+
+  async getRegistrations(options) {
+    const _registration = _.pick(options, ["event_id", "email", "notified"]);
+    console.log(_registration);
+
+    let condition = "";
+
+    condition = Object.entries(_registration).reduce((prev, curr, ind) => {
+      let key = curr[0];
+      let value = curr[1];
+      if (value === undefined) return prev;
+      let cond = prev;
+
+      cond += ind === 0 || prev === "" ? "" : "AND ";
+      cond += `${key}${key !== "email" ? "=" : " LIKE "}${
+        key !== "email" ? "'" + value + "'" : "'%" + value + "%'"
+      }`;
+
+      console.log(curr, cond);
+      return cond;
+    }, "");
+    console.log(
+      "condition",
+      `SELECT registrations.* FROM registrations WHERE ${condition}`
+    );
+    const { rows } = await this.pool.query(
+      `SELECT registrations.* FROM registrations${
+        condition ? " WHERE " : ""
+      }${condition}`
+    );
+    return rows;
+  }
+};

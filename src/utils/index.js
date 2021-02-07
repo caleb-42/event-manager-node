@@ -69,10 +69,7 @@ utils.axiosCall = async ({
 
   return axios(axiosData);
 };
-
-utils.formatSpeakers = async (spkrs) => {
-  let index = Math.floor(Math.random() * 100);
-  let speakers = "";
+utils.getPics = async () => {
   let faces = [];
 
   try {
@@ -87,20 +84,53 @@ utils.formatSpeakers = async (spkrs) => {
     console.log(e);
     faces = [];
   }
+  return faces;
+};
+utils.formatSpeakers = async (spkrs) => {
+  let speakers = [];
 
-  spkrs.forEach((item, ind) => {
+  let faces = await utils.getPics();
+
+  speakers = spkrs.map((item, ind) => {
     let pic = "";
+    let index = Math.floor(Math.random() * 100);
     try {
       let item = faces[index];
       pic = item.urls[item.urls.length - 1]["512"];
     } catch (e) {
       pic = "/avatar.png";
     }
-    speakers += `name:${item.name}|desc:${item.desc}|image:${pic}${
+    return { name: item.name, desc: item.desc, pic };
+    /* speakers += `name:${item.name}|desc:${item.desc}|image:${pic}${
       ind === spkrs.length - 1 ? "" : ","
-    }`;
+    }`; */
   });
-  return speakers;
+  return JSON.stringify(speakers);
+};
+
+utils.updateSpeakers = async (spkrs) => {
+  let speakers = [];
+  console.log(spkrs);
+  let faces = await utils.getPics();
+
+  speakers = spkrs.map((item, ind) => {
+    let pic = "";
+    if (!item.pic) {
+      let index = Math.floor(Math.random() * 100);
+      try {
+        let item = faces[index];
+        pic = item.urls[item.urls.length - 1]["512"];
+      } catch (e) {
+        pic = "/avatar.png";
+      }
+    } else pic = item.pic;
+    return { name: item.name, desc: item.desc, pic };
+  });
+  return JSON.stringify(speakers);
+};
+
+utils.splitSpeakers = async (spkrs) => {
+  return JSON.parse(spkrs);
 };
 
 utils.notFound = function (data, res) {

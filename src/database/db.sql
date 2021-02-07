@@ -40,13 +40,13 @@ CREATE TABLE "events" (
   "created_at" timestamp DEFAULT (now())
 );
 
-ALTER TABLE "events_event_types" ADD FOREIGN KEY ("event_id") REFERENCES "events" ("id");
+ALTER TABLE "events_event_types" ADD FOREIGN KEY ("event_id") REFERENCES "events" ("id") ON DELETE CASCADE;
 
-ALTER TABLE "events_event_types" ADD FOREIGN KEY ("event_type_id") REFERENCES "event_types" ("id");
+ALTER TABLE "events_event_types" ADD FOREIGN KEY ("event_type_id") REFERENCES "event_types" ("id") ON DELETE CASCADE;
 
-ALTER TABLE "event_types" ADD FOREIGN KEY ("admin_id") REFERENCES "admins" ("id");
+ALTER TABLE "event_types" ADD FOREIGN KEY ("admin_id") REFERENCES "admins" ("id") ON DELETE CASCADE;
 
-ALTER TABLE "registrations" ADD FOREIGN KEY ("event_id") REFERENCES "events" ("id");
+ALTER TABLE "registrations" ADD FOREIGN KEY ("event_id") REFERENCES "events" ("id") ON DELETE CASCADE;
 
-ALTER TABLE "events" ADD FOREIGN KEY ("admin_id") REFERENCES "admins" ("id");
+ALTER TABLE "events" ADD FOREIGN KEY ("admin_id") REFERENCES "admins" ("id") ON DELETE CASCADE;
 
