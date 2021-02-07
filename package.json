@@ -9,7 +9,7 @@
     "seed": "psql -d event_manager_test -U postgres -f src/database/dbSeed.sql",
     "dropDB": "psql -d event_manager_test -U postgres -f src/database/dropDb.sql",
     "recreateDB": "npm run dropDB && npm run migrate && npm run seed",
-    "start": "node src/server.js"
+    "start": "npm run recreateDB && node src/server.js"
   },
   "repository": {
     "type": "git",
