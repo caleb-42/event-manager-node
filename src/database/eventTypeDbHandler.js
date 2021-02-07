@@ -1,4 +1,3 @@
-const { formatSpeakers, updateSpeakers } = require("../utils");
 const _ = require("lodash");
 
 module.exports = class EventTypeDbHandler {

@@ -2,6 +2,7 @@ const dotenv = require("dotenv");
 const { Pool } = require("pg");
 const EventDbHandler = require("./eventDbHandler");
 const EventTypeDbHandler = require("./eventTypeDbHandler");
+const RegistrationDbHandler = require("./registrationDbHandler");
 
 dotenv.config();
 
@@ -14,6 +15,7 @@ class DbHandler {
     });
     this.event = new EventDbHandler(this.pool);
     this.eventType = new EventTypeDbHandler(this.pool);
+    this.registration = new RegistrationDbHandler(this.pool);
   }
 
   async find(table, body, query, key = null) {

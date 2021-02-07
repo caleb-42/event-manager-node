@@ -3,9 +3,11 @@ const events = require("./events");
 const { login } = require("./auth");
 const eventTypes = require("./eventTypes");
 const utils = require("../utils");
+const registrations = require("./registrations");
 
 module.exports = {
   events: events,
+  "event/registration": registrations,
   "event-types": (data, res) => authMiddleware(data, res, eventTypes),
   "auth/login": (data, res) => authValidation(data, res, login),
   notFound: (data, res) =>
