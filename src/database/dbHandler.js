@@ -6,12 +6,14 @@ const RegistrationDbHandler = require("./registrationDbHandler");
 
 dotenv.config();
 
-const { NODE_ENV, DATABASE_TEST, DATABASE_PROD } = process.env;
+const { NODE_ENV, DATABASE_TEST, DATABASE_URL } = process.env;
 
 class DbHandler {
   constructor() {
     this.pool = new Pool({
-      connectionString: NODE_ENV === "PROD" ? DATABASE_URL : DATABASE_TEST,
+      connectionString:
+        NODE_ENV === "production" ? `${DATABASE_URL}` : DATABASE_TEST,
+      ssl: { rejectUnauthorized: false },
     });
     this.event = new EventDbHandler(this.pool);
     this.eventType = new EventTypeDbHandler(this.pool);
