@@ -13,7 +13,9 @@ class DbHandler {
     this.pool = new Pool({
       connectionString:
         NODE_ENV === "production" ? `${DATABASE_URL}` : DATABASE_TEST,
-      ssl: { rejectUnauthorized: false },
+      ...(NODE_ENV === "production"
+        ? { ssl: { rejectUnauthorized: false } }
+        : {}),
     });
     this.event = new EventDbHandler(this.pool);
     this.eventType = new EventTypeDbHandler(this.pool);

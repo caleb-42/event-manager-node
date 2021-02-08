@@ -21,6 +21,24 @@ module.exports = class RegistrationDbHandler {
     return createdRegistration;
   }
 
+  async notifyRegistration(id) {
+    const { rows } = await this.pool.query(
+      `UPDATE registrations SET notified=true WHERE id=${id}`
+    );
+
+    return rows[0];
+  }
+
+  async getRegistration(id) {
+    const {
+      rows,
+    } = await this.pool.query(
+      `SELECT registrations.*, events.* FROM registrations INNER JOIN events ON (events.id = registrations.event_id) WHERE registrations.id = $1`,
+      [id]
+    );
+    return rows.length === 0 ? null : rows[0];
+  }
+
   async getRegistrations(options) {
     const _registration = _.pick(options, ["event_id", "email", "notified"]);
     console.log(_registration);
