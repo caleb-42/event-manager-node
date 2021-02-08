@@ -119,6 +119,10 @@ const methods = {
             message: "event not found",
             status: 404,
           });
+
+        // reject if event has registrations
+        // or aleart all registrations that the event has been cancelled
+
         let payload = await dbHandler.event.deleteEvent(id);
         return utils.response(res, {
           data: payload,

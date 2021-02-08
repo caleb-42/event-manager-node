@@ -53,7 +53,6 @@ module.exports = {
   authValidation: (data, res, next) => {
     const err = validation.validateLogIn(data.body).error;
     if (err) {
-      req.error = { status: 400, error: err.details[0].message };
       return utils.response(res, {
         status: 400,
         error: err.details[0].message,

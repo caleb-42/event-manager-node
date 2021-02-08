@@ -2,13 +2,40 @@ const pathPackage = require("path");
 const fs = require("fs");
 const axios = require("axios");
 const dotenv = require("dotenv");
+const nodemailer = require("nodemailer");
 const jwt = require("jsonwebtoken");
 const constants = require("./constants");
 
 dotenv.config();
 
-const { API_KEY, JWT_SECRET } = process.env;
+const { API_KEY, JWT_SECRET, EMAIL_ADDRESS, EMAIL_PASSWORD } = process.env;
 const utils = {};
+
+utils.sendEmail = async (to, event) => {
+  const mailOptions = {
+    from: "event.manager.node.app@gmail.com",
+    to,
+    text: `you have successfully registered for ${event.name} \n It will happening in ${event.start_date}, at nowhere`,
+    subject: "Event manager Registration",
+  };
+
+  const transport = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: EMAIL_ADDRESS,
+      pass: EMAIL_PASSWORD,
+    },
+  });
+  return new Promise((resolve, reject) => {
+    transport.sendMail(mailOptions, (error, res) => {
+      if (error) {
+        console.log(error);
+        resolve({ status: 0, error });
+      }
+      resolve({ status: 1, res });
+    });
+  });
+};
 
 utils.serveStaticFiles = function (url, res) {
   const filePath = `./public/assets${url}`;

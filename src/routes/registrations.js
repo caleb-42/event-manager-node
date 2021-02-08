@@ -28,10 +28,15 @@ const methods = {
         });
       }
       // send email to user
-      let payload = await dbHandler.registration.createRegistration({
+      let resp = await utils.sendEmail(body.email, foundEvent);
+      let newBody = {
         ...body,
         notified: false,
-      });
+      };
+      if (resp.status == 1) {
+        newBody.notified = true;
+      }
+      payload = await dbHandler.registration.createRegistration(newBody);
       return utils.response(res, {
         data: payload,
         message: "you have successfully registered for this event",
