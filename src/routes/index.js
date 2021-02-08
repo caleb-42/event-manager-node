@@ -1,4 +1,6 @@
 const { authMiddleware, authValidation } = require("../middlewares/auth");
+const { createEventTypeValidation } = require("../middlewares/event-type");
+const { createRegistrationValidation } = require("../middlewares/registration");
 const events = require("./events");
 const { login } = require("./auth");
 const eventTypes = require("./eventTypes");
@@ -8,8 +10,12 @@ const dbHandler = require("../database/dbHandler");
 
 module.exports = {
   events: events,
-  "event/registration": registrations,
-  "event-types": (data, res) => authMiddleware(data, res, eventTypes),
+  "event/registration": (data, res) =>
+    createRegistrationValidation(data, res, registrations),
+  "event-types": (data, res) =>
+    authMiddleware(data, res, (data, res) =>
+      createEventTypeValidation(data, res, eventTypes)
+    ),
   "auth/login": (data, res) => authValidation(data, res, login),
   "registration/notify": async (data, res) =>
     authMiddleware(data, res, async (data, res) => {

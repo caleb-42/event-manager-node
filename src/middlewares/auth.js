@@ -51,13 +51,15 @@ module.exports = {
     }
   },
   authValidation: (data, res, next) => {
-    const err = validation.validateLogIn(data.body).error;
-    if (err) {
+    const result = validation.validateLogIn(data.body);
+    console.log("result", result);
+    if (result.error) {
       return utils.response(res, {
         status: 400,
         error: err.details[0].message,
       });
     }
+    data.body = result.value;
     next(data, res);
   },
 };
