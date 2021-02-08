@@ -1,39 +1,46 @@
 const dbHandler = require("../database/dbHandler");
 const { authMiddleware } = require("../middlewares/auth");
+const {
+  createEventValidation,
+  updateEventValidation,
+} = require("../middlewares/event");
 const utils = require("../utils");
 const { notFound } = require("../utils");
 
 const methods = {
   POST: (data, res) =>
-    authMiddleware(data, res, async function (data, res) {
-      const newEvent = data.body;
-      try {
-        let foundEvent = await dbHandler.find(
-          "events",
-          { name: newEvent.name },
-          ["name"]
-        );
-        console.log("foundEvent", foundEvent);
-        if (foundEvent) {
+    authMiddleware(data, res, (data, res) =>
+      createEventValidation(data, res, async function (data, res) {
+        const newEvent = data.body;
+        try {
+          let foundEvent = await dbHandler.find(
+            "events",
+            { name: newEvent.name },
+            ["name"]
+          );
+          console.log("foundEvent", foundEvent);
+          if (foundEvent) {
+            return utils.response(res, {
+              message: "event already exist",
+              status: 400,
+            });
+          }
+          newEvent.admin_id = data.user.id;
+          let payload = await dbHandler.event.createEvent(newEvent);
           return utils.response(res, {
-            message: "event already exist",
-            status: 400,
+            data: payload,
+            message: "event created successfully",
+            status: 201,
+          });
+        } catch (e) {
+          console.log(e);
+          return utils.response(res, {
+            message: "Server Error",
+            status: 500,
           });
         }
-        let payload = await dbHandler.event.createEvent(newEvent);
-        return utils.response(res, {
-          data: payload,
-          message: "event created successfully",
-          status: 201,
-        });
-      } catch (e) {
-        console.log(e);
-        return utils.response(res, {
-          message: "Server Error",
-          status: 500,
-        });
-      }
-    }),
+      })
+    ),
   GET: async function (data, res) {
     try {
       const {
@@ -66,46 +73,52 @@ const methods = {
     }
   },
   PATCH: (data, res) =>
-    authMiddleware(data, res, async function (data, res) {
-      try {
-        const {
-          body: event,
-          queryString: { id },
-        } = data;
-        console.log(id);
-        if (event.name) {
-          let foundEventName = await dbHandler.find(
-            "events",
-            { name: event.name },
-            ["name"]
-          );
-          if (foundEventName.name === event.name) {
-            return utils.response(res, {
-              message: "event already exist",
-              status: 400,
-            });
+    authMiddleware(data, res, (data, res) =>
+      updateEventValidation(data, res, async function (data, res) {
+        try {
+          const {
+            body: event,
+            queryString: { id },
+          } = data;
+          console.log(id);
+          if (event.name) {
+            let foundEventName = await dbHandler.find(
+              "events",
+              { name: event.name },
+              ["name"]
+            );
+            if (foundEventName.name === event.name) {
+              return utils.response(res, {
+                message: "event already exist",
+                status: 400,
+              });
+            }
           }
-        }
-        let foundEvent = await dbHandler.find("events", { id }, ["id"]);
-        if (!foundEvent)
+          let foundEvent = await dbHandler.find("events", { id }, ["id"]);
+          if (!foundEvent)
+            return utils.response(res, {
+              message: "event not found",
+              status: 404,
+            });
+          let payload = await dbHandler.event.updateEvent(
+            id,
+            event,
+            foundEvent
+          );
           return utils.response(res, {
-            message: "event not found",
-            status: 404,
+            data: payload,
+            message: "event updated successfully",
+            status: 200,
           });
-        let payload = await dbHandler.event.updateEvent(id, event, foundEvent);
-        return utils.response(res, {
-          data: payload,
-          message: "event updated successfully",
-          status: 200,
-        });
-      } catch (e) {
-        console.log(e);
-        return utils.response(res, {
-          message: "Server Error",
-          status: 500,
-        });
-      }
-    }),
+        } catch (e) {
+          console.log(e);
+          return utils.response(res, {
+            message: "Server Error",
+            status: 500,
+          });
+        }
+      })
+    ),
   DELETE: (data, res) =>
     authMiddleware(data, res, async function (data, res) {
       try {
