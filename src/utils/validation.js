@@ -27,6 +27,7 @@ module.exports = {
   validateCreateRegistration: (user) => {
     const schema = {
       email: joi.string().email().required(),
+      name: joi.string().required(),
       event_id: joi.number().integer().required(),
     };
     return joi.validate(user, schema, { stripUnknown: true });

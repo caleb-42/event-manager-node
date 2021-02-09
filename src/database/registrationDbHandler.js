@@ -9,12 +9,13 @@ module.exports = class RegistrationDbHandler {
   async createRegistration(newEventType) {
     const _registration = _.pick(newEventType, [
       "email",
+      "name",
       "notified",
       "event_id",
     ]);
     const { rows } = await this.pool.query(
-      `INSERT INTO registrations (email, notified, event_id) 
-        VALUES ($1, $2, $3) RETURNING *`,
+      `INSERT INTO registrations (email, name, notified, event_id) 
+        VALUES ($1, $2, $3, $4) RETURNING *`,
       Object.values(_registration)
     );
     const createdRegistration = rows[0];
@@ -59,12 +60,8 @@ module.exports = class RegistrationDbHandler {
       console.log(curr, cond);
       return cond;
     }, "");
-    console.log(
-      "condition",
-      `SELECT registrations.* FROM registrations WHERE ${condition}`
-    );
     const { rows } = await this.pool.query(
-      `SELECT registrations.* FROM registrations${
+      `SELECT registrations.* FROM registrations INNER JOIN events ON (events.id = registrations.event_id)${
         condition ? " WHERE " : ""
       }${condition}`
     );
