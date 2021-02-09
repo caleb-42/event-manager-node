@@ -46,8 +46,8 @@ const methods = {
       const {
         queryString: { id, q },
       } = data;
-      console.log(id);
-      if (id !== undefined) {
+      console.log(typeof id);
+      if (id !== undefined && id !== "") {
         payload = await dbHandler.event.getEvent(id);
         if (!payload)
           return utils.response(res, {

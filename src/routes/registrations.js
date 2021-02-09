@@ -30,7 +30,7 @@ const methods = {
           });
         }
         // send email to user
-        let resp = await utils.sendEmail(body.email, foundEvent);
+        let resp = await utils.sendEmail(body.email, foundEvent, body.name);
         let newBody = {
           ...body,
           notified: false,

@@ -11,11 +11,11 @@ dotenv.config();
 const { API_KEY, JWT_SECRET, EMAIL_ADDRESS, EMAIL_PASSWORD } = process.env;
 const utils = {};
 
-utils.sendEmail = async (to, event) => {
+utils.sendEmail = async (to, event, username) => {
   const mailOptions = {
     from: "event.manager.node.app@gmail.com",
     to,
-    text: `you have successfully registered for ${event.name} \n It will happening in ${event.start_date}, at nowhere`,
+    text: `hello ${username}, you have successfully registered for ${event.name} \nIt will happening in ${event.start_date}, at ${event.location}`,
     subject: "Event manager Registration",
   };
 

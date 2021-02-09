@@ -23,6 +23,7 @@ CREATE TABLE "event_types" (
 CREATE TABLE "registrations" (
   "id" SERIAL,
   "email" varchar (255),
+  "name" varchar (255),
   "notified" boolean,
   "event_id" int,
   "created_at" timestamp DEFAULT (now()),
