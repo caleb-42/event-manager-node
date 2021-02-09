@@ -34,6 +34,7 @@ CREATE TABLE "events" (
   "admin_id" int,
   "name" varchar (255),
   "description" text,
+  "location" text,
   "speakers" text,
   "start_date" timestamp,
   "end_date" timestamp,

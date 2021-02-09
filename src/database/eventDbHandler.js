@@ -8,7 +8,7 @@ module.exports = class EventDbHandler {
 
   async searchEvent(val) {
     const { rows } = await this.pool.query(
-      `SELECT events.id, events.name, events.description, events.start_date, events.end_date FROM events WHERE name LIKE '%${val}%' OR description LIKE '%${val}%'`
+      `SELECT events.id, events.name, events.description, events.location, events.start_date, events.end_date FROM events WHERE name LIKE '%${val}%' OR description LIKE '%${val}%'`
     );
     return rows;
   }
@@ -18,14 +18,15 @@ module.exports = class EventDbHandler {
       "admin_id",
       "name",
       "description",
-      "speakers",
+      "location",
       "start_date",
       "end_date",
     ]);
-    _event.speakers = await formatSpeakers(_event.speakers);
+    console.log(_event);
+    //_event.speakers = await formatSpeakers(_event.speakers);
     const { rows } = await this.pool.query(
       `INSERT INTO events (
-        admin_id, name, description, speakers, start_date, end_date) 
+        admin_id, name, description, location, start_date, end_date) 
         VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`,
       Object.values(_event)
     );
@@ -43,6 +44,7 @@ module.exports = class EventDbHandler {
       name: newEvent.name || foundEvent.name,
       description: newEvent.description || foundEvent.description,
       speakers: newEvent.speakers || foundEvent.speakers,
+      location: newEvent.location || foundEvent.location,
       start_date: newEvent.start_date || foundEvent.start_date,
       end_date: newEvent.end_date || foundEvent.end_date,
     };
@@ -51,7 +53,7 @@ module.exports = class EventDbHandler {
       _event.speakers = await updateSpeakers(_event.speakers);
     }
     const { rows } = await this.pool.query(
-      `UPDATE events SET name=$1, description=$2, speakers=$3, start_date=$4, end_date=$5
+      `UPDATE events SET name=$1, description=$2, speakers=$3, location=$4, start_date=$5, end_date=$6
       WHERE id=${id} RETURNING *`,
       Object.values(_event)
     );
@@ -80,7 +82,6 @@ module.exports = class EventDbHandler {
   }
 
   async linkEventTypes(eventLinkType = [], eventId) {
-    //eventLinkType.ma;
     let prepSql = eventLinkType.reduce(
       (prev, item, ind) => {
         let keys = `${prev.keys}${
@@ -122,7 +123,7 @@ module.exports = class EventDbHandler {
           ) AS event_types 
         FROM events
       ) u */
-      `SELECT events.id, events.name, events.description, events.start_date, events.end_date,
+      `SELECT events.id, events.name, events.location, events.description, events.start_date, events.end_date,
       (
         SELECT array_to_json(array_agg(b)) from (
           SELECT event_types.id, event_types.name
