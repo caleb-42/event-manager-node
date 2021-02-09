@@ -12,17 +12,8 @@ module.exports = {
   validateCreateEvent: (user) => {
     const schema = {
       name: joi.string().required(),
-      description: joi.string().max(3).required(),
-      speakers: joi
-        .array()
-        .unique((a, b) => a.name === b.name)
-        .items(
-          joi.object({
-            name: joi.string().required(),
-            desc: joi.string().required(),
-          })
-        )
-        .required(),
+      description: joi.string().min(3).required(),
+      location: joi.string(),
       event_types: joi
         .array()
         .unique()
