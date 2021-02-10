@@ -1,0 +1,57 @@
+nav {
+  height: 75px;
+  width: 100%;
+  padding: 1rem 1.5rem;
+}
+body {
+  /* background-image: url("./admin-login-bg.svg"); */
+  background-image: /* url("./admin-login-bg.svg"), */ radial-gradient(
+    #fff,
+    #fff,
+    #eee
+  );
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+main form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 300px;
+  margin-bottom: 200px;
+  padding: 20px;
+}
+main form input {
+  margin-bottom: 20px;
+  width: 100%;
+}
+main h1 {
+  font-size: 2rem;
+  color: var(--green);
+  margin-bottom: 40px;
+}
+
+@media (min-width: 576px) {
+}
+
+@media (min-width: 768px) {
+  main form {
+    box-shadow: 0 0 10px 1px #eee;
+    border-radius: 7px;
+    margin-bottom: 150px;
+  }
+}
+
+@media (min-width: 992px) {
+}
+
+@media (min-width: 1200px) {
+}

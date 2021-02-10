@@ -20,10 +20,11 @@ const server = http.createServer(function (req, res) {
   console.log("path", path);
 
   const { url } = req;
-  if (/^\/[a-zA-Z0-9]+\.[a-zA-Z]+/.test(url)) {
+  if (/^\/[a-zA-Z0-9-_]+\.[a-zA-Z]+/.test(url)) {
     return serveStaticFiles(url, res);
   } else if (path == "") return serveStaticFiles("/index.html", res);
 
+  if (!/api\/[a-z]+/.test(url)) return serveStaticFiles("/404.html", res);
   let qs = parsedURL.query;
   let headers = req.headers;
   let method = req.method.toLowerCase();
