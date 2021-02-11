@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;400;600;700;800;900&display=swap");
 :root {
   --blue: #0e0620;
   --white: #fff;
@@ -12,6 +12,16 @@ body {
   height: 100%;
   width: 100%;
 }
+
+.loader {
+  background-image: url("./loader.gif");
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 4rem;
+  height: 2rem;
+  margin: 0 auto;
+}
+
 body {
   display: flex;
   font-family: "Nunito Sans", sans-serif;
@@ -51,7 +61,7 @@ svg {
 }
 h1 {
   font-size: 7.5em;
-  margin: 15px 0px;
+  margin: 7px 0px;
   font-weight: bold;
 }
 h2 {
@@ -102,11 +112,15 @@ input {
   border-radius: 0.25rem;
   font-size: 1rem;
 }
-
+.gone {
+  display: none !important;
+}
 input::placeholder {
   opacity: 0.5 !important;
 }
-
+.flex-grow {
+  flex-grow: 1;
+}
 .anim {
   -webkit-transition: 0.2s all;
   transition: 0.2s all;

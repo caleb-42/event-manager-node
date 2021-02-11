@@ -23,11 +23,11 @@ module.exports = class EventDbHandler {
       "end_date",
     ]);
     console.log(_event);
-    //_event.speakers = await formatSpeakers(_event.speakers);
+    _event.speakers = JSON.stringify([]);
     const { rows } = await this.pool.query(
       `INSERT INTO events (
-        admin_id, name, description, location, start_date, end_date) 
-        VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`,
+        admin_id, name, description, location, start_date, end_date, speakers) 
+        VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *`,
       Object.values(_event)
     );
     const createdEvent = rows[0];
@@ -123,7 +123,7 @@ module.exports = class EventDbHandler {
           ) AS event_types 
         FROM events
       ) u */
-      `SELECT events.id, events.name, events.location, events.description, events.start_date, events.end_date,
+      `SELECT events.id, events.name, events.location, events.speakers, events.description, events.start_date, events.end_date,
       (
         SELECT array_to_json(array_agg(b)) from (
           SELECT event_types.id, event_types.name

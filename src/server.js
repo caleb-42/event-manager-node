@@ -19,12 +19,24 @@ const server = http.createServer(function (req, res) {
   path = path.replace(/^\/+|\/+$/g, "");
   console.log("path", path);
 
-  const { url } = req;
+  const { url: val } = req;
+  console.log("url", val);
+  let url = val;
+  if (/\/event\/[0-9]+$/.test(val)) {
+    return serveStaticFiles("/event.html", res);
+  } else if (/\/event-edit\/[0-9]+$/.test(val)) {
+    return serveStaticFiles("/event.html", res);
+  }
+  if (!/api\/[a-z]+/.test(url)) {
+    let urls = val.split("/");
+    url = `/${urls[urls.length - 1]}`;
+  }
   if (/^\/[a-zA-Z0-9-_]+\.[a-zA-Z]+/.test(url)) {
     return serveStaticFiles(url, res);
   } else if (path == "") return serveStaticFiles("/index.html", res);
 
   if (!/api\/[a-z]+/.test(url)) return serveStaticFiles("/404.html", res);
+
   let qs = parsedURL.query;
   let headers = req.headers;
   let method = req.method.toLowerCase();
