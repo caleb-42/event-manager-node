@@ -6,18 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="utilities.css">
     <link rel="stylesheet" href="components.css">
-    <link rel="stylesheet" href="./admin-events.css">
+    <link rel="stylesheet" href="./event-types.css">
     <title>Create Events</title>
 </head>
 
-<body class="overflow-hide">
+<body class="overflow-hide grid">
     <aside id="app-drawer" class="close">
         <div id="aside-backdrop"></div>
         <div class="app-con">
             <div class="back-arrows"></div>
             <div id="links">
-                <a href="./admin-events.html" class="link active">EVENTS</a>
-                <a href="./event-types.html" class="link">EVENTS TYPES</a>
+                <a href="./admin-events.html" class="link">EVENTS</a>
+                <a href="./event-types.html" class="link active">EVENTS TYPES</a>
                 <a href="./registration.html" class="link">REGISTRATIONS</a>
             </div>
         </div>
@@ -31,20 +31,14 @@
                         <h1>Bambi</h1>
                     </a>
                     <div class="d-flex justify-content-between align-items-center">
-                        <input class="search gone" placeholder="search" />
-                        <button id="new-event" class="btn white anim">New Event</button>
+                        <button id="new-event" class="btn white anim">New Event Type</button>
                         <div id="navicon" class="pointer"></div>
                     </div>
                 </div>
-                <div class="middle d-inline-block w-100 mx-auto">
-                    <input class="search w-100" placeholder="search" />
-                </div>
                 <div class="bottom mx-auto w-100 d-flex justify-content-between align-items-center">
                     <h2>
-                        EVENTS
+                        EVENT TYPES
                     </h2>
-                    <div class="arrange d-flex justify-content-between align-items-center"><img class="grid-toggle"
-                            src="grid-icon.svg" /><img class="list-toggle" src="list-icon.svg" /></div>
                 </div>
             </div>
         </nav>
@@ -64,26 +58,17 @@
         <div id="modal-dialog" class="w-100">
             <div class="modal-close-btn close-icon pointer">&timesd;</div>
             <form class="d-flex flex-column align-items-center w-100 mx-auto static">
-                <h1>NEW EVENT</h1>
-                <div class="w-100 form-group flex-column d-flex justify-content-between">
-                    <input type="text" placeholder="name" />
-                    <input type="text" placeholder="location" />
+                <h1>NEW EVENT TYPE</h1>
+                <div class="form-group w-100">
+                    <input type="text" style="width: 100%;" placeholder="name" />
                 </div>
-                <div class="w-100 form-group flex-column d-flex justify-content-between">
-                    <label class="" for="start-date"> Start Date
-                        <input class="w-100" id="start-date" type="date" placeholder="start_date" /></label>
-                    <label class="" for="start-date"> End Date<input class="w-100" w-100 type="date"
-                            placeholder="end_date" /></label>
-
-                </div>
-                <textarea maxlength="200" placeholder="description" class="w-100" rows="3"></textarea>
-                <button type="button" class="submit btn green-bg border-none anim ">save</button>
+                <button type="button" class="submit btn green-bg border-none anim modal-close-btn">save</button>
             </form>
         </div>
     </div>
 </body>
 <script src="./template.js"></script>
 <script src="./utilities.js"></script>
-<script src="./admin-events.js"></script>
+<script src="./event-types.js"></script>
 
 </html>

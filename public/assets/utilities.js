@@ -3,10 +3,13 @@ const switchClass = (target, toggleClass, type = "toggle") => {
     const objs = document.querySelectorAll(`${target}`);
     objs.forEach((obj) => {
       if (type === "toggle") obj.classList.toggle(toggleClass);
-      if (type === "add" && !obj.classList.contains(toggleClass))
+      if (type === "add" && !obj.classList.contains(toggleClass)) {
+        console.log(target, type, toggleClass);
         obj.classList.add(toggleClass);
+      }
       if (type === "remove" && obj.classList.contains(toggleClass))
         obj.classList.remove(toggleClass);
+      if (type === "replace") obj.classList = [toggleClass];
     });
   } catch (e) {
     console.error(e);
@@ -155,6 +158,25 @@ const dummyData = ({ url, method }) => {
             },
           ],
         },
+        {
+          id: 3,
+          name: "DevFest",
+          location: "lagos, Nigeria",
+          description: "wonderful meeting",
+          start_date: "2020-12-31T23:00:01.000Z",
+          end_date: "2021-01-05T23:00:01.000Z",
+          speakers: [],
+          event_types: [
+            {
+              id: 1,
+              name: "Cruise",
+            },
+            {
+              id: 2,
+              name: "Jump",
+            },
+          ],
+        },
       ],
     },
   };
@@ -171,7 +193,7 @@ const dummyData = ({ url, method }) => {
 
 (() => {
   try {
-    switchEvents("#modal-bg", ["#modal", "close"]);
-    switchEvents("#modal .modal-close-btn", ["#modal", "close"]);
-  } catch {}
+  } catch (e) {
+    console.log(e);
+  }
 })();

@@ -25,7 +25,7 @@ const server = http.createServer(function (req, res) {
   if (/\/event\/[0-9]+$/.test(val)) {
     return serveStaticFiles("/event.html", res);
   } else if (/\/event-edit\/[0-9]+$/.test(val)) {
-    return serveStaticFiles("/event.html", res);
+    return serveStaticFiles("/event-edit.html", res);
   }
   if (!/api\/[a-z]+/.test(url)) {
     let urls = val.split("/");

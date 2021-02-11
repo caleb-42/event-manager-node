@@ -1,4 +1,4 @@
-const eventItem = (item) => {
+const eventItem = (item, uri) => {
   let [day, month, year] = new Date(item.start_date)
     .toLocaleString("default", {
       month: "short",
@@ -7,7 +7,7 @@ const eventItem = (item) => {
     })
     .split(" ");
   return `
-    <div onclick="window.location='/event/${item.id}'" class="item w-100">
+    <div onclick="window.location='${uri}/${item.id}'" class="item w-100">
         <div class="list-item">
             <div class="date">
                 <p>${day}</p>
@@ -45,6 +45,22 @@ const eventItem = (item) => {
     </div>
 `;
 };
+const eventTypeItem = (item) => {
+  let [day, month, year] = new Date(item.start_date)
+    .toLocaleString("default", {
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+    })
+    .split(" ");
+  return `
+    <div class="item w-100">
+        <div class="grid-item">
+            <h5 class="title">${item.name}</h5>
+        </div>
+    </div>
+`;
+};
 
 const loader = () => `<div class="loader-con flex-grow d-flex justify-content-center align-items-center">
 <div class="loader"></div>
@@ -72,7 +88,7 @@ const singleEventDate = (item) => {
 const singleEventTitleLocation = (item) => `<h1>${item.name}</h1>
 <h5>${item.location}</h5>`;
 
-const singleEventBody = (item) => item.description;
+const singleEventBody = (item) => `${item.description}`;
 
 const singleEventTypes = (item) =>
   `${item.event_types.map((val) => val.name).join(" | ")}`;

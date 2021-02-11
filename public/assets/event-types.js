@@ -4,15 +4,13 @@
   switchEvents("#navicon", ["#app-drawer", "close", "remove"]);
   switchEvents("#app-drawer #aside-backdrop", ["#app-drawer", "close", "add"]);
   switchEvents("#app-drawer .back-arrows", ["#app-drawer", "close", "add"]);
-  switchEvents(".grid-toggle", ["body", "grid", "add"]);
-  switchEvents(".list-toggle", ["body", "grid", "remove"]);
   switchEvents("#new-event", ["#modal", "close", "remove"]);
   server({
     url: "api/events" /* "error" */,
     resolve: (res) => {
       let list = "";
       res.map((item) => {
-        list += eventItem(item, "/event-edit");
+        list += eventTypeItem(item);
       });
       switchClass(".loader-con", "gone", "add");
       switchClass(".item-block", "gone", "remove");

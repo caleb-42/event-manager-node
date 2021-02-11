@@ -6,7 +6,7 @@
     resolve: (res) => {
       let list = "";
       res.map((item) => {
-        list += eventItem(item);
+        list += eventItem(item, "/event");
       });
       switchClass(".loader-con", "gone", "add");
       switchClass(".item-block", "gone", "remove");

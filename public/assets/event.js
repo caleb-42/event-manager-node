@@ -1,4 +1,6 @@
 (() => {
+  switchEvents("#modal #modal-bg", ["#modal", "close", "add"]);
+  switchEvents("#modal .modal-close-btn", ["#modal", "close", "add"]);
   let params = window.location.href.split("/");
   let event = params[params.length - 1];
   server({
