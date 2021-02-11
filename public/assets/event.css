@@ -47,6 +47,7 @@ nav .bottom {
   width: 100%;
   margin: 0 auto;
 }
+
 nav .middle {
   display: inline-block;
   max-width: 1200px;
@@ -57,6 +58,9 @@ nav .btn {
   padding: 0.5rem 1.4rem;
   cursor: pointer;
   font-size: 0.9rem;
+}
+nav .btn:focus {
+  outline: none;
 }
 body {
   background-image: radial-gradient(#fff, #fff, #eee);
@@ -131,6 +135,26 @@ body main .item-con .speakers .speaker-list .speaker h6 {
 body main .item-con .speakers .speaker-list .speaker span {
   font-size: 0.85rem;
 }
+
+body #modal-dialog form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 300px;
+  margin-bottom: 200px;
+  padding: 20px;
+  margin: 0 auto;
+}
+body #modal-dialog form input {
+  margin-bottom: 30px;
+  width: 100%;
+}
+body #modal-dialog h1 {
+  font-size: 2rem;
+  color: var(--green);
+  margin-bottom: 40px;
+}
 @media (min-width: 576px) {
   body .item-block {
     padding: 3rem;
@@ -141,4 +165,8 @@ body main .item-con .speakers .speaker-list .speaker span {
 }
 
 @media (min-width: 768px) {
+  body #modal-dialog form {
+    border-radius: 7px;
+    margin-bottom: 150px;
+  }
 }

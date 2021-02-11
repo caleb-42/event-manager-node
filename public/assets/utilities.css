@@ -215,13 +215,73 @@ input::placeholder {
 .h-100 {
   height: 100%;
 }
+#modal {
+  position: absolute;
+  z-index: 10;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+#modal #modal-bg {
+  position: absolute;
+  z-index: 20;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  animation: modal-appear 0.2s ease-in;
+}
+#modal #modal-dialog {
+  position: absolute;
+  z-index: 30;
+  width: 342px;
+  height: 349px;
+  border-radius: 8px;
+  background: #fff;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  animation: modal-dialog-appear 0.3s ease-in;
+}
+#modal.close,
+#modal.close #modal-dialog,
+#modal.close #modal-bg {
+  display: none;
+}
+
 @keyframes appear {
   from {
     opacity: 0;
     top: 20px;
+    display: none;
   }
   to {
     opacity: 1;
     top: 0;
+    display: block;
+  }
+}
+@keyframes modal-appear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes modal-dialog-appear {
+  from {
+    opacity: 0;
+    top: 20px;
+    transform: scale(0.2);
+  }
+  to {
+    opacity: 1;
+    top: 0;
+    transform: scale(1);
   }
 }

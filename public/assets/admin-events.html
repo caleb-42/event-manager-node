@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="utilities.css">
-    <link rel="stylesheet" href="./event.css">
+    <link rel="stylesheet" href="./admin-events.css">
     <title>Admin Events</title>
 </head>
 
@@ -17,28 +17,26 @@
                     <img class="logo" src="./logo.png" />
                     <h1>Bambi</h1>
                 </a>
-                <div class="date-con" class="d-flex justify-content-between align-items-center">
-                    <div class="date"></div>
+                <div class="d-flex justify-content-between align-items-center">
+                    <input class="search" placeholder="search" />
+                    <a href="./admin-login.html" class="btn border-white">Admin</a>
                 </div>
             </div>
             <div class="middle">
-
+                <input class="search w-100" placeholder="search" />
             </div>
-            <div class="bottom d-flex justify-content-center align-items-center">
-                <button id="register" class="btn border-white">Register</button>
+            <div class="bottom d-flex justify-content-between align-items-center">
+                <h2>
+                    EVENTS
+                </h2>
+                <div class="arrange d-flex justify-content-between align-items-center"><img class="grid-toggle"
+                        src="grid-icon.svg" /><img class="list-toggle" src="list-icon.svg" /></div>
             </div>
         </div>
     </nav>
     <main>
         <div class="item-block gone">
             <div class="item-con">
-                <p></p>
-                <div class="event-types">
-                    <span></span>
-                </div>
-                <div class="speakers">
-
-                </div>
             </div>
         </div>
 
@@ -46,21 +44,9 @@
             <div class="loader"></div>
         </div>
     </main>
-    <div id="modal" class="close">
-        <div id="modal-bg"></div>
-        <div id="modal-dialog">
-            <form>
-                <h1>REGISTER</h1>
-                <input type="text" placeholder="name" />
-                <input type="text" placeholder="email" />
-                <button type="button" class="submit btn green-bg border-none anim modal-close-btn">register</button>
-            </form>
-        </div>
-    </div>
 </body>
-
 <script src="./template.js"></script>
 <script src="./utilities.js"></script>
-<script src="./event.js"></script>
+<script src="./admin-events.js"></script>
 
 </html>

@@ -5,6 +5,7 @@
     url: `api/events?id=${event}` /* "error" */,
     resolve: (res) => {
       console.log(res);
+      switchEvents("#register", ["#modal", "close", "remove"]);
       switchClass(".loader-con", "gone", "add");
       switchClass(".item-block", "gone", "remove");
       document.querySelector(

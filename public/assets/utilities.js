@@ -158,7 +158,7 @@ const dummyData = ({ url, method }) => {
       ],
     },
   };
-  console.log(/api\/events[?]id=[0-9]+$/.test(url));
+
   if (/api\/events[?]id=[0-9]+$/.test(url)) {
     let params = window.location.href.split("/");
     let event = params[params.length - 1];
@@ -168,3 +168,10 @@ const dummyData = ({ url, method }) => {
 
   return data[url][method];
 };
+
+(() => {
+  try {
+    switchEvents("#modal-bg", ["#modal", "close"]);
+    switchEvents("#modal .modal-close-btn", ["#modal", "close"]);
+  } catch {}
+})();
