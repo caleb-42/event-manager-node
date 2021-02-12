@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="utilities.css">
     <link rel="stylesheet" href="components.css">
     <link rel="stylesheet" href="./event-edit.css">
-    <title>Edit Events</title>
+    <title>Bambi admin</title>
 </head>
 
 <body class="overflow-hide flex-row">
@@ -48,14 +48,14 @@
             <div class="item-block gone d-block mx-auto w-100">
                 <div class="item-con d-flex flex-column justify-content-start flex-wrap text-center">
                     <p class="desc mx-auto w-100"></p>
-                    <div class="event-types w-100">
+                    <div class="event-types-con w-100">
                         <div class="d-flex justify-content-center align-items-center">
-                            <button id="edit-event-type" class="btn green anim">Edit Event type</button>
+                            <button id="edit-event-type" class="btn green anim">Add Event type</button>
                         </div>
                         <span></span>
                     </div>
                     <div class="d-flex justify-content-center align-items-center">
-                        <button id="edit-speaker" class="btn green anim">Edit Speaker</button>
+                        <button id="edit-speaker" class="btn green anim">Add Speaker</button>
                     </div>
                     <div class="speakers d-flex flex-column text-center align-items-center w-100">
 
@@ -65,11 +65,15 @@
             <div class="loader-con flex-grow d-flex justify-content-center align-items-center">
                 <div class="loader"></div>
             </div>
+            <div class="server-message-con flex-grow d-flex justify-content-center align-items-center">
+                <div class="server-message"></div>
+            </div>
         </main>
     </div>
     <div id="modal" class="close">
         <div id="modal-bg"></div>
         <div id="modal-dialog">
+            <div class="modal-close-btn close-icon pointer">&timesd;</div>
             <form class="text-center modal-event d-flex flex-column align-items-center w-100 mx-auto">
                 <h1>EDIT EVENT</h1>
                 <div class="w-100 form-group flex-column d-flex justify-content-between">
@@ -99,7 +103,7 @@
                 <button type="button" class="submit btn green-bg border-none anim modal-close-btn">save</button>
             </form>
             <form class="text-center modal-event-type flex-column align-items-center w-100 mx-auto">
-                <h1>MANAGE EVENT TYPES</h1>
+                <h1>ADD EVENT TYPES</h1>
                 <div class="form-group w-100">
                     <label class="text-center w-100 d-block" style="width: 100%;" for="event-type">Event types<select
                             class="w-100" id="event-type" name="event-types">

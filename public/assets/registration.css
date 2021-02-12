@@ -96,8 +96,9 @@ main .item-con {
   width: 70px;
   font-size: 1.2rem;
   font-weight: 700;
-  color: #fff;
-  background: #d8d8d8;
+  background: #fff;
+  box-shadow: 0 0 10px 2px #ddd;
+  color: #6c6c6c;
   border-radius: 8px;
 }
 .list-item .date.special {

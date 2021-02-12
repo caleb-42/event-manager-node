@@ -94,11 +94,12 @@ body.grid main .grid-item {
   position: relative;
   width: 100%;
   flex-direction: column;
-  background: #bbbbbb;
+  background: #fff;
+  box-shadow: 0 0 10px 2px #ddd;
   padding: 1rem;
   border-radius: 8px;
   height: 180px;
-  color: #fff;
+  color: #6c6c6c;
   animation: appear 0.4s ease-in-out;
 }
 body.grid main .grid-item .content {
@@ -115,7 +116,7 @@ body.grid main .grid-item .content main {
   flex-grow: 1;
 }
 body.grid main .grid-item .content .title {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   margin-bottom: 0.5rem;
 }
 body.grid main .grid-item .content .location {
@@ -124,8 +125,13 @@ body.grid main .grid-item .content .location {
 body.grid main .grid-item .meta {
   font-size: 0.85rem;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+  align-items: center;
   text-align: right;
+}
+body.grid main .grid-item .meta button {
+  padding: 0.5rem 0.7rem;
+  font-size: 0.85rem;
 }
 body.grid main .grid-item .content .date {
   font-size: 0.85rem;
@@ -149,7 +155,7 @@ body.grid main .list-item {
 .list-item .content {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   height: 100%;
   padding: 0.5rem 0 0.5rem 1rem;
   flex-grow: 1;
@@ -162,7 +168,7 @@ body.grid main .list-item {
 }
 .list-item .content .title {
   color: #3d3d3d;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   margin-bottom: 0.5rem;
 }
 .list-item .content .location {
@@ -172,7 +178,16 @@ body.grid main .list-item {
 .list-item .content .meta {
   font-size: 0.85rem;
   display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
   color: #8e8e8e;
+}
+body main .list-item .meta p {
+  margin-bottom: 0.5rem;
+}
+body main .list-item .meta button {
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
 }
 .list-item .date {
   display: flex;
@@ -183,8 +198,9 @@ body.grid main .list-item {
   width: 70px;
   font-size: 1.2rem;
   font-weight: 700;
-  color: #fff;
-  background: #d8d8d8;
+  background: #fff;
+  box-shadow: 0 0 10px 2px #ddd;
+  color: #6c6c6c;
   border-radius: 8px;
 }
 .list-item .date.special {
@@ -217,10 +233,17 @@ body.grid main .list-item {
 }
 
 @media (min-width: 576px) {
+  .list-item .content {
+    padding: 0.5rem 0 0.5rem 1rem;
+  }
+
   body.grid main .item-con {
     justify-content: space-between;
   }
 
+  .list-item .content {
+    justify-content: space-between;
+  }
   body.grid main .item {
     margin-right: /* 1.7rem */ 3%;
     width: calc(100% / 2.3);
@@ -229,7 +252,13 @@ body.grid main .list-item {
   .list-item .content {
     flex-direction: row;
   }
-
+  .list-item .content .meta {
+    flex-direction: column;
+    align-items: center;
+  }
+  body main .list-item .meta button {
+    margin-top: 0.5rem;
+  }
   #modal-dialog form .form-group {
     flex-direction: row;
   }

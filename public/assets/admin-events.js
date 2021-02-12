@@ -19,7 +19,7 @@
   const makePageList = (res) => {
     let list = "";
     res.map((item) => {
-      list += eventItem(item, "/event-edit");
+      list += eventEditItem(item, "/event-edit");
     });
     document.querySelector(".item-con").innerHTML = list;
   };

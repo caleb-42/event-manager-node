@@ -109,6 +109,21 @@ body.grid main .grid-item .content .date {
 body.grid main .grid-item.special {
   background: #ce69a0;
 }
+body.grid main .grid-item .remove-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #cf5151;
+  position: absolute;
+  display: inline-block;
+  right: 0.5rem;
+  bottom: 0.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  cursor: pointer;
+}
 /* ------------modal CSS ------------ */
 #modal #modal-dialog {
   height: 280px;

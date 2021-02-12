@@ -19,6 +19,12 @@
     server({
       url: "event-types" /* "error" */,
       resolve: (res) => {
+        if (res.data.length === 0) {
+          requestCycle.BAD();
+          return (document.querySelector(
+            ".server-message"
+          ).innerHTML = errorMsg("No Records found"));
+        }
         console.log(res);
         makePageList(res.data);
         requestCycle.GOOD();

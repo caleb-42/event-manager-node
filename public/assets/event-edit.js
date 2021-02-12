@@ -9,9 +9,35 @@
   let params = window.location.href.split("/");
   let event = params[params.length - 1];
 
-  server({
-    url: `api/events?id=${event}` /* "error" */,
+  const makePageItem = (res) => {
+    document.querySelector("nav .header-nav .date").innerHTML = singleEventDate(
+      res
+    );
+    document.querySelector(
+      "nav .header-nav .middle"
+    ).innerHTML = singleEventTitleLocation(res);
+    document.querySelector("main .item-con .desc").innerHTML = singleEventBody(
+      res
+    );
+    document.querySelector(
+      "main .item-con .event-types-con span"
+    ).innerHTML = singleEditEventTypes(res);
+    let speakerList = singleEditEventSpeakers(res);
+    let speakr = document.querySelector("main .item-con .speakers");
+    speakr.innerHTML = speakerList
+      ? `<div class="speaker-list">${speakerList}</div>`
+      : "";
+  };
+
+  const fetchEventItem = server({
+    url: `events?id=${event}` /* "error" */,
     resolve: (res) => {
+      if (!res.data) {
+        requestCycle.BAD();
+        return (document.querySelector(".server-message").innerHTML = errorMsg(
+          "Item not found"
+        ));
+      }
       console.log(res);
       switchEvents("#edit-event", ["#modal", "edit-event", "replace"]);
       switchEvents("#edit-event-type", [
@@ -21,28 +47,13 @@
       ]);
       switchEvents("#edit-speaker", ["#modal", "edit-speaker", "replace"]);
 
-      switchClass(".loader-con", "gone", "add");
-      switchClass(".item-block", "gone", "remove");
-      document.querySelector(
-        "nav .header-nav .date"
-      ).innerHTML = singleEventDate(res);
-      document.querySelector(
-        "nav .header-nav .middle"
-      ).innerHTML = singleEventTitleLocation(res);
-      document.querySelector(
-        "main .item-con .desc"
-      ).innerHTML = singleEventBody(res);
-      document.querySelector(
-        "main .item-con .event-types span"
-      ).innerHTML = singleEventTypes(res);
-      let speakerList = singleEventSpeakers(res);
-      let speakr = document.querySelector("main .item-con .speakers");
-      speakr.innerHTML = speakerList
-        ? `<div class="speaker-list">${speakerList}</div>`
-        : "";
+      requestCycle.GOOD();
+      makePageItem(res.data);
     },
     reject: (err) => {
       document.querySelector(".loader-con").innerHTML = errorMsg();
+      requestCycle.BAD();
     },
   });
+  fetchEventItem();
 })();

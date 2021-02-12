@@ -56,9 +56,20 @@ body .item-block p {
   color: #8e8e8e;
   margin-bottom: 3rem;
 }
-body main .item-con .event-types {
-  color: #6c6c6c;
+body main .item-con .event-types-con {
   margin-bottom: 3rem;
+}
+body main .item-con .event-types {
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
+body main .item-con .event-types .chip {
+  padding: 0.2rem 0.5rem;
+  border-radius: 10px;
+  border: 0.7px solid #ccc;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
 }
 body main .item-con .speakers h3 {
   text-align: center;
@@ -84,6 +95,22 @@ body main .item-con .speakers .speaker-list .speaker .dp {
   border-radius: 50%;
   background: #ccc;
   margin-bottom: 1rem;
+  position: relative;
+}
+body main .item-con .speakers .speaker-list .speaker .remove-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #cf5151;
+  position: absolute;
+  display: inline-block;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  cursor: pointer;
 }
 body main .item-con .speakers .speaker-list .speaker h6 {
   font-size: 1.3rem;

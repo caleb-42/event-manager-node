@@ -3,6 +3,7 @@
   --blue: #0e0620;
   --white: #fff;
   --green: #00aeae;
+  --red: #cf5151;
 }
 * {
   box-sizing: border-box;
@@ -150,19 +151,36 @@ textarea::placeholder {
   background: var(--green);
   color: var(--white);
 }
-.btn.green.anim:before {
+
+.btn:focus {
+  outline: none;
+}
+.btn.red.anim:before {
   content: "";
   position: absolute;
   left: 0;
   top: 0;
   width: 0%;
   height: 100%;
-  background: var(--green);
+  background: var(--red);
   z-index: -1;
   transition: 0.2s ease;
 }
-.btn:focus {
-  outline: none;
+
+.btn.red {
+  border: 2px solid var(--red);
+  color: var(--red);
+  font-weight: 700;
+}
+
+.btn.red.anim:hover {
+  color: var(--white);
+  background: var(--red);
+  transition: 0.2s ease;
+}
+
+.btn.red:hover:before {
+  width: 100%;
 }
 .btn.white.anim:before {
   content: "";
@@ -176,26 +194,47 @@ textarea::placeholder {
   transition: 0.2s ease;
 }
 
-.btn.green {
-  border: 2px solid var(--green);
-  font-weight: 700;
-}
-
 .btn.white {
   border: 2px solid var(--white);
   font-weight: 700;
-}
-
-.btn.green.anim:hover {
-  color: var(--white);
-  background: var(--green);
-  transition: 0.2s ease;
 }
 
 .btn.white.anim:hover {
   color: var(--green);
   background: #fff;
   transition: 0.2s ease;
+}
+
+.btn.white:hover:before {
+  width: 100%;
+}
+
+.btn.green.anim:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0%;
+  height: 100%;
+  background: var(--green);
+  z-index: -1;
+  transition: 0.2s ease;
+}
+
+.btn.green {
+  border: 2px solid var(--green);
+  font-weight: 700;
+}
+.btn.green.anim:hover {
+  color: var(--white);
+  background: var(--green);
+  transition: 0.2s ease;
+}
+.btn.green:hover:before {
+  width: 100%;
+}
+.m-0 {
+  margin: 0 !important;
 }
 .relative {
   position: relative;
@@ -211,12 +250,6 @@ textarea::placeholder {
 }
 .relative {
   position: relative;
-}
-.btn.green:hover:before {
-  width: 100%;
-}
-.btn.white:hover:before {
-  width: 100%;
 }
 .justify-content-center {
   justify-content: center;
