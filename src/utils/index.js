@@ -15,8 +15,8 @@ utils.sendEmail = async (to, event, username) => {
   const mailOptions = {
     from: "event.manager.node.app@gmail.com",
     to,
-    text: `hello ${username}, you have successfully registered for ${event.name} \nIt will happening in ${event.start_date}, at ${event.location}`,
-    subject: "Event manager Registration",
+    text: `hello ${username}, you have successfully registered for ${event.name} \nIt will happening by ${event.start_date}, at ${event.location}`,
+    subject: "Bambi event Registration",
   };
 
   const transport = nodemailer.createTransport({
@@ -63,8 +63,11 @@ utils.serveStaticFiles = function (url, res) {
   console.log(filePath);
   fs.readFile(filePath, (err, content) => {
     if (err) {
-      res.writeHead(500);
-      res.end(`Sorry, check with the site admin for error: ${err.code}`);
+      const fileP = `./public/assets/404.html`;
+      fs.readFile(fileP, (err, content) => {
+        res.writeHead(200, { "Content-Type": contentType });
+        res.end(content, "utf-8");
+      });
     } else {
       res.writeHead(200, { "Content-Type": contentType }); // indicate the request was successful
       res.end(content, "utf-8");

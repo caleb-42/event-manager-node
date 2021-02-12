@@ -42,7 +42,6 @@ module.exports = class RegistrationDbHandler {
 
   async getRegistrations(options) {
     const _registration = _.pick(options, ["event_id", "email", "notified"]);
-    console.log(_registration);
 
     let condition = "";
 
@@ -53,7 +52,7 @@ module.exports = class RegistrationDbHandler {
       let cond = prev;
 
       cond += ind === 0 || prev === "" ? "" : "AND ";
-      cond += `${key}${key !== "email" ? "=" : " LIKE "}${
+      cond += `${key}${key !== "email" ? "=" : " ILIKE "}${
         key !== "email" ? "'" + value + "'" : "'%" + value + "%'"
       }`;
 
@@ -61,7 +60,7 @@ module.exports = class RegistrationDbHandler {
       return cond;
     }, "");
     const { rows } = await this.pool.query(
-      `SELECT registrations.* FROM registrations INNER JOIN events ON (events.id = registrations.event_id)${
+      `SELECT events.name as event_name, events.start_date, registrations.* FROM registrations INNER JOIN events ON (events.id = registrations.event_id)${
         condition ? " WHERE " : ""
       }${condition}`
     );

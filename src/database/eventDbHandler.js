@@ -7,8 +7,19 @@ module.exports = class EventDbHandler {
   }
 
   async searchEvent(val) {
+    let search = val;
     const { rows } = await this.pool.query(
-      `SELECT events.id, events.name, events.description, events.location, events.start_date, events.end_date FROM events WHERE name LIKE '%${val}%' OR description LIKE '%${val}%'`
+      `SELECT events.id, events.name, events.location, events.speakers, events.description, events.start_date, events.end_date,
+      (
+        SELECT array_to_json(array_agg(b)) from (
+          SELECT event_types.id, event_types.name
+          FROM event_types
+          INNER JOIN events_event_types
+          ON event_types.id = events_event_types.event_type_id
+          WHERE events_event_types.event_id = events.id
+        ) b
+      ) AS event_types 
+    FROM events WHERE name ILIKE '%${search}%' OR description ILIKE '%${search}%'`
     );
     return rows;
   }
@@ -23,19 +34,19 @@ module.exports = class EventDbHandler {
       "end_date",
     ]);
     console.log(_event);
-    //_event.speakers = await formatSpeakers(_event.speakers);
+    _event.speakers = JSON.stringify([]);
     const { rows } = await this.pool.query(
       `INSERT INTO events (
-        admin_id, name, description, location, start_date, end_date) 
-        VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`,
+        admin_id, name, description, location, start_date, end_date, speakers) 
+        VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *`,
       Object.values(_event)
     );
     const createdEvent = rows[0];
-    let event_types = await this.linkEventTypes(
+    /* let event_types = await this.linkEventTypes(
       newEvent.event_types,
       createdEvent.id
-    );
-    return { ...createdEvent, event_types };
+    ); */
+    return createdEvent /* { ...createdEvent, event_types } */;
   }
 
   async updateEvent(id, newEvent, foundEvent) {
@@ -61,11 +72,13 @@ module.exports = class EventDbHandler {
 
     if (newEvent.event_types) {
       await this.unLinkEventTypes(updatedEvent.id);
-      let event_types = await this.linkEventTypes(
-        newEvent.event_types,
-        updatedEvent.id
-      );
-      updatedEvent.event_type = event_types;
+      if (newEvent.event_types.length > 0) {
+        let event_types = await this.linkEventTypes(
+          newEvent.event_types,
+          updatedEvent.id
+        );
+        updatedEvent.event_type = event_types;
+      }
       // _event.speakers = await formatSpeakers(_event.speakers);
     }
     return updatedEvent;
@@ -123,7 +136,7 @@ module.exports = class EventDbHandler {
           ) AS event_types 
         FROM events
       ) u */
-      `SELECT events.id, events.name, events.location, events.description, events.start_date, events.end_date,
+      `SELECT events.id, events.name, events.location, events.speakers, events.description, events.start_date, events.end_date,
       (
         SELECT array_to_json(array_agg(b)) from (
           SELECT event_types.id, event_types.name

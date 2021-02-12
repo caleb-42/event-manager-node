@@ -87,7 +87,11 @@ const methods = {
               { name: event.name },
               ["name"]
             );
-            if (foundEventName.name === event.name) {
+            if (
+              foundEventName &&
+              foundEventName.name === event.name &&
+              foundEventName.id !== Number(id)
+            ) {
               return utils.response(res, {
                 message: "event already exist",
                 status: 400,

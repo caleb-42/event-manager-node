@@ -56,7 +56,7 @@ module.exports = {
     if (result.error) {
       return utils.response(res, {
         status: 400,
-        error: err.details[0].message,
+        error: result.error.details[0].message,
       });
     }
     data.body = result.value;

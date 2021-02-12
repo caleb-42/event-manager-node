@@ -19,10 +19,23 @@ const server = http.createServer(function (req, res) {
   path = path.replace(/^\/+|\/+$/g, "");
   console.log("path", path);
 
-  const { url } = req;
-  if (/^\/[a-zA-Z0-9]+\.[a-zA-Z]+/.test(url)) {
+  const { url: val } = req;
+  console.log("url", val);
+  let url = val;
+  if (/\/event\/[0-9]+$/.test(val)) {
+    return serveStaticFiles("/event.html", res);
+  } else if (/\/event-edit\/[0-9]+$/.test(val)) {
+    return serveStaticFiles("/event-edit.html", res);
+  }
+  if (!/api\/[a-z]+/.test(url)) {
+    let urls = val.split("/");
+    url = `/${urls[urls.length - 1]}`;
+  }
+  if (/^\/[a-zA-Z0-9-_]+\.[a-zA-Z]+/.test(url)) {
     return serveStaticFiles(url, res);
   } else if (path == "") return serveStaticFiles("/index.html", res);
+
+  if (!/api\/[a-z]+/.test(url)) return serveStaticFiles("/404.html", res);
 
   let qs = parsedURL.query;
   let headers = req.headers;
@@ -44,7 +57,7 @@ const server = http.createServer(function (req, res) {
       queryString: qs,
       headers: headers,
       method: method.toUpperCase(),
-      body: JSON.parse(payload),
+      body: method.toUpperCase() === "GET" ? {} : JSON.parse(payload),
     };
     //pass data incase we need info about the request
     //pass the response object because router is outside our scope
