@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="utilities.css">
-    <link rel="stylesheet" href="404.css">
-    <title>404</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="utilities.css">
+	<link rel="stylesheet" href="components.css">
+	<link rel="stylesheet" href="404.css">
+
+	<title>Bambi event manager</title>
 </head>
+
 <body>
-    <div id="notfound">
+	<div id="notfound">
 		<div class="notfound">
 			<div class="notfound-404">
 				<div></div>
@@ -16,8 +20,9 @@
 			</div>
 			<h2>Resource not found</h2>
 			<!-- <p>The page you are looking for might have been removed had its name changed or is temporarily unavailable.</p> -->
-			<a class="btn green-bg" href="/">home page</a>
+			<button class="btn green-bg" onclick="window.history.back()">Back</button>
 		</div>
 	</div>
 </body>
+
 </html>
