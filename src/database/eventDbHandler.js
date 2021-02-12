@@ -7,6 +7,7 @@ module.exports = class EventDbHandler {
   }
 
   async searchEvent(val) {
+    let search = val;
     const { rows } = await this.pool.query(
       `SELECT events.id, events.name, events.location, events.speakers, events.description, events.start_date, events.end_date,
       (
@@ -18,7 +19,7 @@ module.exports = class EventDbHandler {
           WHERE events_event_types.event_id = events.id
         ) b
       ) AS event_types 
-    FROM events WHERE name LIKE '%${val}%' OR description LIKE '%${val}%'`
+    FROM events WHERE name ILIKE '%${search}%' OR description ILIKE '%${search}%'`
     );
     return rows;
   }

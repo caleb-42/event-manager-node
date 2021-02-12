@@ -33,6 +33,12 @@
       url: "event/registration" /* "error" */,
       resolve: (res) => {
         console.log(res);
+        if (res.data.length === 0) {
+          requestCycle.BAD();
+          return (document.querySelector(
+            ".server-message"
+          ).innerHTML = errorMsg("No Records found"));
+        }
         makePageList(res.data);
         requestCycle.GOOD();
       },

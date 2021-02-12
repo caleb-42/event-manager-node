@@ -135,10 +135,21 @@ const registrationItem = (item) => {
 };
 const eventTypeItem = (item) => {
   return `
-    <div class="item w-100">
+    <div  class="item w-100">
         <div class="grid-item">
             <h5 class="title">${item.name}</h5>
-            <div class="remove-icon">&times;</div>
+            <div data-id="${item.id}" class="remove-icon ${
+    [
+      "MeetUp",
+      "Leap",
+      "Recruiting Mission",
+      "Hackathon",
+      "Premium-only Webinar",
+      "Open Webinar",
+    ].includes(item.name)
+      ? "gone"
+      : ""
+  }">&times;</div>
         </div>
     </div>
 `;

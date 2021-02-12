@@ -168,7 +168,7 @@ body.grid main .list-item {
 .list-item .content .main {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   flex-grow: 1;
 }
 .list-item .content .title {

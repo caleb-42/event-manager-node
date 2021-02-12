@@ -55,51 +55,48 @@ const methods = {
       });
     }
   },
-  DELETE: (data, res) =>
-    createEventTypeValidation(data, res, async function (data, res) {
-      try {
-        const {
-          queryString: { id },
-        } = data;
-        console.log(id);
-        let foundEventType = await dbHandler.find("event_types", { id }, [
-          "id",
-        ]);
-        if (!foundEventType) {
-          return utils.response(res, {
-            message: "event type not found",
-            status: 404,
-          });
-        }
-        if (
-          [
-            "MeetUp",
-            "Leap",
-            "Recruiting Mission",
-            "Hackathon",
-            "Premium-only Webinar",
-            "Open Webinar",
-          ].includes(foundEventType.name)
-        ) {
-          return utils.response(res, {
-            message: "you are not authorized to delete this event type",
-            status: 403,
-          });
-        }
-        let payload = await dbHandler.eventType.deleteEventType(id);
+  DELETE: async function (data, res) {
+    try {
+      const {
+        queryString: { id },
+      } = data;
+      console.log(id);
+      let foundEventType = await dbHandler.find("event_types", { id }, ["id"]);
+      if (!foundEventType) {
         return utils.response(res, {
-          data: payload,
-          message: "event type deleted successfully",
-          status: 200,
-        });
-      } catch (e) {
-        console.log(e);
-        return utils.response(res, {
-          message: "Server Error",
-          status: 500,
+          message: "event type not found",
+          status: 404,
         });
       }
-    }),
+      if (
+        [
+          "MeetUp",
+          "Leap",
+          "Recruiting Mission",
+          "Hackathon",
+          "Premium-only Webinar",
+          "Open Webinar",
+        ].includes(foundEventType.name)
+      ) {
+        return utils.response(res, {
+          message: "you are not authorized to delete this event type",
+          status: 403,
+        });
+      }
+      let payload = await dbHandler.eventType.deleteEventType(id);
+      return utils.response(res, {
+        data: payload,
+        message: "event type deleted successfully",
+        status: 200,
+      });
+    } catch (e) {
+      console.log(e);
+      return utils.response(res, {
+        message: "Server Error",
+        status: 500,
+      });
+    }
+  },
 };
 
 module.exports = async function (data, res) {

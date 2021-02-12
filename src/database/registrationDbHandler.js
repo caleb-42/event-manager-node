@@ -52,7 +52,7 @@ module.exports = class RegistrationDbHandler {
       let cond = prev;
 
       cond += ind === 0 || prev === "" ? "" : "AND ";
-      cond += `${key}${key !== "email" ? "=" : " LIKE "}${
+      cond += `${key}${key !== "email" ? "=" : " ILIKE "}${
         key !== "email" ? "'" + value + "'" : "'%" + value + "%'"
       }`;
 
