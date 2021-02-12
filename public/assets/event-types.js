@@ -5,19 +5,30 @@
   switchEvents("#app-drawer #aside-backdrop", ["#app-drawer", "close", "add"]);
   switchEvents("#app-drawer .back-arrows", ["#app-drawer", "close", "add"]);
   switchEvents("#new-event", ["#modal", "close", "remove"]);
-  server({
-    url: "api/events" /* "error" */,
-    resolve: (res) => {
-      let list = "";
-      res.map((item) => {
-        list += eventTypeItem(item);
-      });
-      switchClass(".loader-con", "gone", "add");
-      switchClass(".item-block", "gone", "remove");
-      document.querySelector(".item-con").innerHTML = list;
-    },
-    reject: (err) => {
-      document.querySelector(".loader-con").innerHTML = errorMsg();
-    },
-  });
+
+  const makePageList = (res) => {
+    let list = "";
+    res.map((item) => {
+      list += eventTypeItem(item);
+    });
+    document.querySelector(".item-con").innerHTML = list;
+  };
+
+  const fetchEventTypes = () => {
+    requestCycle.START();
+    server({
+      url: "event-types" /* "error" */,
+      resolve: (res) => {
+        console.log(res);
+        makePageList(res.data);
+        requestCycle.GOOD();
+      },
+      reject: (err) => {
+        document.querySelector(".server-message").innerHTML = errorMsg();
+        requestCycle.BAD();
+      },
+    });
+  };
+
+  fetchEventTypes();
 })();

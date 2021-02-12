@@ -8,6 +8,7 @@
   switchEvents("#modal .modal-close-btn", ["#modal", "close", "add"]);
   let params = window.location.href.split("/");
   let event = params[params.length - 1];
+
   server({
     url: `api/events?id=${event}` /* "error" */,
     resolve: (res) => {

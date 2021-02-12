@@ -1,0 +1,133 @@
+body {
+  flex-direction: row;
+  background-image: radial-gradient(#fff, #fff, #ccc);
+}
+
+/* ---------------nav CSS---------------- */
+nav .logo h1 {
+  color: #fff;
+}
+nav .header .search {
+  display: none;
+}
+nav .header-nav {
+  display: flex;
+  height: 220px;
+  width: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  background-size: cover;
+  overflow: hidden;
+  background-image: url("./nav-bg.svg"),
+    linear-gradient(to top right, #0c7777, #066666);
+}
+nav .header {
+  max-width: 1200px;
+}
+nav .bottom h2 {
+  color: #fff;
+}
+nav .bottom {
+  max-width: 1000px;
+}
+nav .middle {
+  max-width: 1200px;
+}
+
+/* -------Item CSS ---------- */
+main .item {
+  width: 100%;
+  margin-bottom: 20px;
+}
+main .item-con {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  max-width: 1000px;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 1.5rem;
+}
+/* -------list Item CSS ---------- */
+.list-item {
+  display: flex;
+  position: relative;
+  width: 100%;
+  align-items: center;
+  animation: appear 0.4s ease-in-out;
+}
+.list-item .content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding: 0.5rem 0 0.5rem 1rem;
+  flex-grow: 1;
+}
+.list-item .content main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+}
+.list-item .content .title {
+  color: #3d3d3d;
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+}
+.list-item .content .location {
+  font-size: 1rem;
+  color: #8e8e8e;
+}
+.list-item .content .meta {
+  font-size: 0.85rem;
+  display: flex;
+  color: #8e8e8e;
+}
+.list-item .date {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 90px;
+  width: 70px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #fff;
+  background: #d8d8d8;
+  border-radius: 8px;
+}
+.list-item .date.special {
+  background: #ce69a0;
+}
+
+@media (min-width: 576px) {
+  nav .middle {
+    display: none;
+  }
+  nav .header .search {
+    display: inline-block;
+  }
+
+  .list-item .content {
+    flex-direction: row;
+  }
+}
+
+@media (min-width: 768px) {
+  nav .bottom h2 {
+    font-size: 2rem;
+  }
+  .list-item .content {
+    padding-left: 2rem;
+  }
+}
+
+@media (min-width: 992px) {
+  nav .header-nav {
+    height: 180px;
+  }
+}

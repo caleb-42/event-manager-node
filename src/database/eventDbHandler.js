@@ -8,7 +8,17 @@ module.exports = class EventDbHandler {
 
   async searchEvent(val) {
     const { rows } = await this.pool.query(
-      `SELECT events.id, events.name, events.description, events.location, events.start_date, events.end_date FROM events WHERE name LIKE '%${val}%' OR description LIKE '%${val}%'`
+      `SELECT events.id, events.name, events.location, events.speakers, events.description, events.start_date, events.end_date,
+      (
+        SELECT array_to_json(array_agg(b)) from (
+          SELECT event_types.id, event_types.name
+          FROM event_types
+          INNER JOIN events_event_types
+          ON event_types.id = events_event_types.event_type_id
+          WHERE events_event_types.event_id = events.id
+        ) b
+      ) AS event_types 
+    FROM events WHERE name LIKE '%${val}%' OR description LIKE '%${val}%'`
     );
     return rows;
   }

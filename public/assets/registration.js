@@ -1,33 +1,36 @@
 (() => {
-  switchEvents("#modal #modal-bg", ["#modal", "close", "add"]);
-  switchEvents("#modal .modal-close-btn", ["#modal", "close", "add"]);
   switchEvents("#navicon", ["#app-drawer", "close", "remove"]);
   switchEvents("#app-drawer #aside-backdrop", ["#app-drawer", "close", "add"]);
   switchEvents("#app-drawer .back-arrows", ["#app-drawer", "close", "add"]);
-  switchEvents(".grid-toggle", ["body", "grid", "add"]);
-  switchEvents(".list-toggle", ["body", "grid", "remove"]);
-  switchEvents("#new-event", ["#modal", "close", "remove"]);
+
+  const notify = (item) => {
+    const id = item.dataset.id;
+    console.log(id);
+  };
 
   document.querySelectorAll("input.search-input").forEach((item) => {
     console.log(item);
     item.addEventListener("input", (e) => {
       console.log("asc", e.target.value);
-      searchEvents(e.target.value);
+      searchRegistration(e.target.value);
     });
   });
 
   const makePageList = (res) => {
     let list = "";
     res.map((item) => {
-      list += eventItem(item, "/event-edit");
+      list += registrationItem(item);
     });
     document.querySelector(".item-con").innerHTML = list;
+    document.querySelectorAll(".notify-btn").forEach((item) => {
+      item.addEventListener("click", () => notify(item));
+    });
   };
 
-  const fetchEvents = () => {
+  const fetchRegistrations = () => {
     requestCycle.START();
     server({
-      url: "events" /* "error" */,
+      url: "event/registration" /* "error" */,
       resolve: (res) => {
         console.log(res);
         makePageList(res.data);
@@ -40,10 +43,10 @@
     });
   };
 
-  const searchEvents = (search) => {
+  const searchRegistration = (email) => {
     requestCycle.START();
     server({
-      url: `events?q=${search}` /* "error" */,
+      url: `event/registration?email=${email}` /* "error" */,
       resolve: (res) => {
         if (res.data.length === 0) {
           requestCycle.BAD();
@@ -62,5 +65,5 @@
     });
   };
 
-  fetchEvents();
+  fetchRegistrations();
 })();

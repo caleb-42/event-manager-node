@@ -11,10 +11,7 @@ const dbHandler = require("../database/dbHandler");
 module.exports = {
   "api/events": events,
   "api/event/registration": (data, res) => registrations.main(data, res),
-  "api/event-types": (data, res) =>
-    authMiddleware(data, res, (data, res) =>
-      createEventTypeValidation(data, res, eventTypes)
-    ),
+  "api/event-types": (data, res) => authMiddleware(data, res, eventTypes),
   "api/auth/login": (data, res) => authValidation(data, res, login),
   "api/registration/notify": async (data, res) =>
     authMiddleware(data, res, registrations.registrationNotify),

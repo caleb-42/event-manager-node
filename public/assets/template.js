@@ -45,6 +45,40 @@ const eventItem = (item, uri) => {
     </div>
 `;
 };
+const registrationItem = (item) => {
+  let [day, month, year] = new Date(item.start_date)
+    .toLocaleString("default", {
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+    })
+    .split(" ");
+  return `
+    <div class="item w-100">
+        <div class="list-item">
+            <div class="date">
+                <p>${day}</p>
+                <p>${month}</p>
+            </div>
+            <div class="content">
+                <div class="main">
+                    <h5 class="title">${item.event_name}</h5>
+                    <p class="location">${item.email}</p>
+                </div>
+                <div class="meta d-flex align-items-center">
+                    ${
+                      item.notified
+                        ? "notified"
+                        : `<button class="btn green anim notify-btn" data-id=${item.id} class="notify">
+                          notify
+                        </button>`
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+`;
+};
 const eventTypeItem = (item) => {
   let [day, month, year] = new Date(item.start_date)
     .toLocaleString("default", {

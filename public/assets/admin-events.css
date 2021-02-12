@@ -5,7 +5,10 @@ body {
 
 /* ---------------nav CSS---------------- */
 nav .logo h1 {
-  color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+}
+nav .header .search {
+  display: none;
 }
 nav .header-nav {
   display: flex;

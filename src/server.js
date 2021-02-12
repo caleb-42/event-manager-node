@@ -57,7 +57,7 @@ const server = http.createServer(function (req, res) {
       queryString: qs,
       headers: headers,
       method: method.toUpperCase(),
-      body: JSON.parse(payload),
+      body: method.toUpperCase() === "GET" ? {} : JSON.parse(payload),
     };
     //pass data incase we need info about the request
     //pass the response object because router is outside our scope

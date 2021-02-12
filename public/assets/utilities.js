@@ -32,10 +32,14 @@ const server = ({
   reject = (err) => {},
   contentType = { "Content-Type": "application/json" },
 }) => {
-  /* body = JSON.stringify(body);
+  body = JSON.stringify(body);
   const payload = {
     method,
-    headers: contentType,
+    headers: {
+      ...contentType,
+      Authorization:
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InN1cGVyLWFkbWluIiwiaWQiOjEsImlhdCI6MTYxMjE5Mzg5NX0.W3VOkT2lH6AjK4zc6q5iZCNCB2PUfI_c8VQlGMVOdNw",
+    },
     credentials: "include",
   };
   if (method !== "GET") payload.body = body;
@@ -50,8 +54,8 @@ const server = ({
     })
     .catch((err) => {
       reject(err);
-    }); */
-
+    });
+  /* 
   try {
     let res = dummyData({ url, method });
     setTimeout(() => {
@@ -62,7 +66,7 @@ const server = ({
     setTimeout(() => {
       reject("something went wrong");
     }, 0);
-  }
+  } */
 };
 
 const formToJson = (form) => {
@@ -101,8 +105,98 @@ const toggleLoader = (btn = ".submit", res = ".resp", loadr = ".loader") => {
   });
 };
 
+const requestCycle = {
+  START: () => {
+    switchClass(".loader-con", "gone", "renove");
+    switchClass(".server-message-con", "gone", "add");
+    switchClass(".item-block", "gone", "add");
+  },
+  GOOD: () => {
+    switchClass(".loader-con", "gone", "add");
+    switchClass(".item-block", "gone", "remove");
+  },
+  BAD: () => {
+    switchClass(".loader-con", "gone", "add");
+    switchClass(".server-message-con", "gone", "remove");
+  },
+};
+
 const dummyData = ({ url, method }) => {
   const data = {
+    "api/event-types": {
+      GET: [
+        {
+          id: 1,
+          name: "MeetUp",
+          created_at: "2021-02-11T00:33:51.601Z",
+          admin_id: 1,
+        },
+        {
+          id: 2,
+          name: "Leap",
+          created_at: "2021-02-11T00:33:51.601Z",
+          admin_id: 1,
+        },
+        {
+          id: 3,
+          name: "Recruiting",
+          created_at: "2021-02-11T00:33:51.601Z",
+          admin_id: 1,
+        },
+        {
+          id: 4,
+          name: "Mission",
+          created_at: "2021-02-11T00:33:51.601Z",
+          admin_id: 1,
+        },
+        {
+          id: 5,
+          name: "Premium-only Webinar",
+          created_at: "2021-02-11T00:33:51.601Z",
+          admin_id: 1,
+        },
+        {
+          id: 6,
+          name: "Open Webinar",
+          created_at: "2021-02-11T00:33:51.601Z",
+          admin_id: 1,
+        },
+      ],
+    },
+    "api/registration": {
+      GET: [
+        {
+          event_name: "awqwwqf",
+          start_date: "2020-12-31T23:00:01.000Z",
+          id: 1,
+          email: "ewibaba391993@gmail.com",
+          name: "james",
+          notified: true,
+          event_id: 1,
+          created_at: "2021-02-11T23:45:19.887Z",
+        },
+        {
+          event_name: "awqwwqf",
+          start_date: "2020-12-31T23:00:01.000Z",
+          id: 1,
+          email: "ewibaba391993@gmail.com",
+          name: "james",
+          notified: false,
+          event_id: 1,
+          created_at: "2021-02-11T23:45:19.887Z",
+        },
+        {
+          event_name: "awqwwqf",
+          start_date: "2020-12-31T23:00:01.000Z",
+          id: 1,
+          email: "ewibaba391993@gmail.com",
+          name: "james",
+          notified: true,
+          event_id: 1,
+          created_at: "2021-02-11T23:45:19.887Z",
+        },
+      ],
+    },
     "api/events": {
       GET: [
         {
@@ -190,10 +284,3 @@ const dummyData = ({ url, method }) => {
 
   return data[url][method];
 };
-
-(() => {
-  try {
-  } catch (e) {
-    console.log(e);
-  }
-})();
