@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="utilities.css">
+    <link rel="stylesheet" href="components.css">
+    <link rel="stylesheet" href="./registration.css">
+    <title>Bambi admin</title>
+</head>
+
+<body class="overflow-hide">
+    <aside id="app-drawer" class="close">
+        <div id="aside-backdrop"></div>
+        <div class="app-con">
+            <div class="back-arrows"></div>
+            <div id="links">
+                <a href="/admin-events.html" class="link">EVENTS</a>
+                <a href="/event-types.html" class="link">EVENTS TYPES</a>
+                <a href="/registration.html" class="link active">REGISTRATIONS</a>
+                <a onclick="window.localStorage.clear()" href="/" class="link">LOG OUT</a>
+            </div>
+        </div>
+    </aside>
+    <div class="d-flex flex-grow flex-column main-con">
+        <nav class="d-block w-100">
+            <div class="header-nav">
+                <div class="header w-100 mx-auto d-flex justify-content-between align-items-center">
+                    <a class="logo" href="/admin-events.html">
+                        <img class="logo" src="./logo.png" />
+                        <h1>Bambi</h1>
+                    </a>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <input class="search search-input" placeholder="search user email" />
+                        <div id="navicon" class="pointer"></div>
+                    </div>
+                </div>
+                <div class="middle d-inline-block w-100 mx-auto">
+                    <input class="search w-100 search-input" placeholder="search user email" />
+                </div>
+                <div class="bottom mx-auto w-100 d-flex justify-content-between align-items-center">
+                    <h2>
+                        REGISTRATIONS
+                    </h2>
+                </div>
+            </div>
+        </nav>
+        <main class="d-flex flex-column flex-grow w-100 overflow-y">
+            <div class="item-block gone">
+                <div class="item-con">
+                </div>
+            </div>
+
+            <div class="loader-con flex-grow d-flex justify-content-center align-items-center">
+                <div class="loader"></div>
+            </div>
+            <div class="server-message-con flex-grow d-flex justify-content-center align-items-center">
+                <div class="server-message"></div>
+            </div>
+        </main>
+    </div>
+</body>
+<script src="./template.js"></script>
+<script src="./utilities.js"></script>
+<script src="./registration.js"></script>
+
+</html>
