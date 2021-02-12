@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="utilities.css">
+    <link rel="stylesheet" href="components.css">
+    <link rel="stylesheet" href="./event-types.css">
+    <title>Bambi admin</title>
+</head>
+
+<body class="overflow-hide grid">
+    <aside id="app-drawer" class="close">
+        <div id="aside-backdrop"></div>
+        <div class="app-con">
+            <div class="back-arrows"></div>
+            <div id="links">
+                <a href="/admin-events.html" class="link">EVENTS</a>
+                <a href="/event-types.html" class="link active">EVENTS TYPES</a>
+                <a href="/registration.html" class="link">REGISTRATIONS</a>
+                <a onclick="window.localStorage.clear()" href="/" class="link">LOG OUT</a>
+            </div>
+        </div>
+    </aside>
+    <div class="d-flex flex-grow flex-column main-con">
+        <nav class="d-block w-100">
+            <div class="header-nav">
+                <div class="header w-100 mx-auto d-flex justify-content-between align-items-center">
+                    <a class="logo" href="/admin-events.html">
+                        <img class="logo" src="./logo.png" />
+                        <h1>Bambi</h1>
+                    </a>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <button id="new-event" class="btn white anim">New Event Type</button>
+                        <div id="navicon" class="pointer"></div>
+                    </div>
+                </div>
+                <div class="bottom mx-auto w-100 d-flex justify-content-between align-items-center">
+                    <h2>
+                        EVENT TYPES
+                    </h2>
+                </div>
+            </div>
+        </nav>
+        <main class="d-flex flex-column flex-grow w-100 overflow-y">
+            <div class="item-block gone">
+                <div class="item-con">
+                </div>
+            </div>
+
+            <div class="loader-con flex-grow d-flex justify-content-center align-items-center">
+                <div class="loader"></div>
+            </div>
+            <div class="server-message-con flex-grow d-flex justify-content-center align-items-center">
+                <div class="server-message"></div>
+            </div>
+        </main>
+    </div>
+    <div id="modal" class="close">
+        <div id="modal-bg"></div>
+        <div id="modal-dialog" class="w-100">
+            <div class="modal-close-btn close-icon pointer">&timesd;</div>
+            <form class="d-flex modal-event-type flex-column align-items-center w-100 mx-auto static">
+                <h1>NEW EVENT TYPE</h1>
+                <div class="form-group w-100">
+                    <input type="text" name="name" style="width: 100%;" placeholder="name" />
+                </div>
+                <button type="button" class="submit btn green-bg border-none anim modal-close-btn">save</button>
+            </form>
+        </div>
+    </div>
+</body>
+<script src="./template.js"></script>
+<script src="./utilities.js"></script>
+<script src="./event-types.js"></script>
+
+</html>
