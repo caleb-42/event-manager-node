@@ -22,6 +22,7 @@
   z-index: 100;
   background: #505050;
   width: 250px;
+  min-width: 250px;
   left: 0;
   height: 100vh;
   transition: left 0.2s ease-out;
@@ -93,7 +94,7 @@
 }
 
 .logo h1 {
-  color: #0d4e4d;
+  color: #fff;
   font-size: 1rem;
   margin-left: 0.5rem;
   display: inline-block;

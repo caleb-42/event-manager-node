@@ -108,6 +108,8 @@ main .list-item {
   width: 100%;
   align-items: center;
   animation: appear 0.4s ease-in-out;
+  padding-bottom: 1rem;
+  border-bottom: 0.5px solid #ccc;
 }
 main .list-item .content {
   display: flex;
@@ -125,8 +127,12 @@ main .list-item .content main {
 }
 main .list-item .content .title {
   color: #3d3d3d;
-  font-size: 1.4rem;
+  font-size: 1.1rem;
   margin-bottom: 0.5rem;
+  width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 main .list-item .content .location {
   font-size: 1rem;
@@ -185,6 +191,9 @@ body.grid main .grid-item .content main {
 body.grid main .grid-item .content .title {
   font-size: 1rem;
   margin-bottom: 0.5rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 170px;
 }
 body.grid main .grid-item .content .location {
   font-size: 1rem;
@@ -216,6 +225,9 @@ body.grid main .grid-item.special {
   body.grid main .item {
     margin-right: /* 1.7rem */ 3%;
     width: calc(100% / 2.3);
+  }
+  main .list-item .content .meta {
+    align-items: center;
   }
 }
 

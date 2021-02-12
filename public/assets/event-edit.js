@@ -1,4 +1,6 @@
 (() => {
+  const user = localStorage.getItem("user");
+  if (!user) window.location = "/admin-login.html";
   const state = {
     eventTypes: [],
     event: {},

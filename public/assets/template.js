@@ -19,9 +19,11 @@ const eventItem = (item, uri) => {
                     <p class="location">${item.location}</p>
                 </div>
                 <div class="meta">
-                    <p class="event-types">${item.event_types
-                      .map((val) => val.name)
-                      .join(" | ")}</p>
+                    <p class="event-types">${
+                      item.event_types
+                        ? item.event_types.map((val) => val.name).join(" | ")
+                        : ""
+                    }</p>
                 </div>
             </div>
         </div>
@@ -37,9 +39,11 @@ const eventItem = (item, uri) => {
                 </div>
             </div>
             <div class="meta">
-                <p class="event-types">${item.event_types
-                  .map((val) => val.name)
-                  .join(" | ")}</p>
+                <p class="event-types">${
+                  item.event_types
+                    ? item.event_types.map((val) => val.name).join(" | ")
+                    : ""
+                }</p>
             </div>
         </div>
     </div>

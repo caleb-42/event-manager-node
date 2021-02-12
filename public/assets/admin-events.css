@@ -136,6 +136,12 @@ body.grid main .grid-item .meta button {
   padding: 0.5rem 0.7rem;
   font-size: 0.85rem;
 }
+body.grid main .grid-item .meta p {
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 200px;
+}
 body.grid main .grid-item .content .date {
   font-size: 0.85rem;
   font-weight: 700;
@@ -193,6 +199,10 @@ body.grid main .list-item {
 }
 body main .list-item .meta p {
   margin-bottom: 0.5rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 150px;
 }
 body main .list-item .meta button {
   padding: 0.5rem 1rem;
@@ -271,6 +281,10 @@ body main .list-item .meta button {
   body main .list-item .meta button {
     margin-top: 0.5rem;
   }
+  body main .list-item .meta p {
+    white-space: normal;
+    width: auto;
+  }
   #modal-dialog form .form-group {
     flex-direction: row;
   }
@@ -282,6 +296,9 @@ body main .list-item .meta button {
   }
   #modal-dialog form textarea {
     height: 230px;
+  }
+  body main .list-item .meta p {
+    text-align: right;
   }
 }
 
@@ -302,6 +319,19 @@ body main .list-item .meta button {
   .list-item .content {
     padding-left: 2rem;
   }
+  /* body {
+    display: inline-block;
+  }
+  aside {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .main-con {
+    display: inline-block;
+    vertical-align: middle;
+    width: 75%;
+    height: 100%;
+  } */
 }
 
 @media (min-width: 992px) {

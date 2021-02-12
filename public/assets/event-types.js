@@ -1,4 +1,6 @@
 (() => {
+  const user = localStorage.getItem("user");
+  if (!user) window.location = "/admin-login.html";
   switchEvents("#modal #modal-bg", ["#modal", "close", "add"]);
   switchEvents("#modal .modal-close-btn", ["#modal", "close", "add"]);
   switchEvents("#navicon", ["#app-drawer", "close", "remove"]);

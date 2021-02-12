@@ -5,11 +5,9 @@ nav {
 }
 body {
   /* background-image: url("./admin-login-bg.svg"); */
-  background-image: /* url("./admin-login-bg.svg"), */ radial-gradient(
-    #fff,
-    #fff,
-    #eee
-  );
+  /* background-image: url("./admin-login-bg.svg"),
+    radial-gradient(#fff, #fff, #eee); */
+  background: #999;
 }
 
 main {
@@ -25,9 +23,11 @@ main form {
   flex-direction: column;
   align-items: center;
   width: 100%;
-  max-width: 300px;
+  background: #fff;
+  max-width: 350px;
   margin-bottom: 200px;
   padding: 20px;
+  height: 350px;
 }
 main form input {
   margin-bottom: 20px;
@@ -44,7 +44,7 @@ main h1 {
 
 @media (min-width: 768px) {
   main form {
-    box-shadow: 0 0 10px 1px #eee;
+    box-shadow: 0 0 15px 1px #777;
     border-radius: 7px;
     margin-bottom: 150px;
   }

@@ -1,4 +1,7 @@
 (() => {
+  const user = localStorage.getItem("user");
+  if (!user) window.location = "/admin-login.html";
+
   switchEvents("#navicon", ["#app-drawer", "close", "remove"]);
   switchEvents("#app-drawer #aside-backdrop", ["#app-drawer", "close", "add"]);
   switchEvents("#app-drawer .back-arrows", ["#app-drawer", "close", "add"]);

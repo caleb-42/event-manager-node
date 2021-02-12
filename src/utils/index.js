@@ -15,8 +15,8 @@ utils.sendEmail = async (to, event, username) => {
   const mailOptions = {
     from: "event.manager.node.app@gmail.com",
     to,
-    text: `hello ${username}, you have successfully registered for ${event.name} \nIt will happening in ${event.start_date}, at ${event.location}`,
-    subject: "Event manager Registration",
+    text: `hello ${username}, you have successfully registered for ${event.name} \nIt will happening by ${event.start_date}, at ${event.location}`,
+    subject: "Bambi event Registration",
   };
 
   const transport = nodemailer.createTransport({
