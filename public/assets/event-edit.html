@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="utilities.css">
+    <link rel="stylesheet" href="components.css">
+    <link rel="stylesheet" href="./event-edit.css">
+    <title>Bambi admin</title>
+</head>
+
+<body class="overflow-hide flex-row">
+    <aside id="app-drawer" class="close">
+        <div id="aside-backdrop"></div>
+        <div class="app-con">
+            <div class="back-arrows"></div>
+            <div id="links">
+                <a href="/admin-events.html" class="link active">EVENTS</a>
+                <a href="/event-types.html" class="link">EVENTS TYPES</a>
+                <a href="/registration.html" class="link">REGISTRATIONS</a>
+                <a onclick="window.localStorage.clear()" href="/" class="link">LOG OUT</a>
+            </div>
+        </div>
+    </aside>
+    <div class="d-flex flex-grow flex-column overflow-y main-con">
+        <nav class="d-block w-100">
+            <div class="header-nav d-flex overflow-hide justify-content-between flex-column w-100">
+                <div class="header w-100 mx-auto d-flex justify-content-between align-items-center">
+                    <a class="logo" href="/admin-events.html">
+                        <img class="logo" src="./logo.png" />
+                        <h1>Bambi</h1>
+                    </a>
+                    <div class="date-con d-flex justify-content-between align-items-center">
+                        <div class="date w-100">
+                        </div>
+                        <div id="navicon" class="pointer"></div>
+                    </div>
+                </div>
+                <div class="middle mx-auto w-100 d-inline-block text-center">
+
+                </div>
+                <div class="bottom d-flex w-100 mx-auto justify-content-center align-items-center">
+                    <button id="edit-event" class="btn white anim">Edit</button>
+                </div>
+            </div>
+        </nav>
+        <main class="d-flex flex-column flex-grow w-100">
+            <div class="item-block gone d-block mx-auto w-100">
+                <div class="item-con d-flex flex-column justify-content-start flex-wrap text-center">
+                    <p class="desc mx-auto w-100"></p>
+                    <div class="event-types-con w-100">
+                        <div class="d-flex justify-content-center align-items-center">
+                            <button id="edit-event-type" class="btn green anim">Add Event type</button>
+                        </div>
+                        <div class="types"></div>
+                    </div>
+                    <div class="d-flex justify-content-center align-items-center">
+                        <button id="edit-speaker" class="btn green anim">Add Speaker</button>
+                    </div>
+                    <div class="speakers d-flex flex-column text-center align-items-center w-100">
+
+                    </div>
+                </div>
+            </div>
+            <div class="loader-con flex-grow d-flex justify-content-center align-items-center">
+                <div class="loader"></div>
+            </div>
+            <div class="server-message-con flex-grow d-flex justify-content-center align-items-center">
+                <div class="server-message"></div>
+            </div>
+        </main>
+    </div>
+    <div id="modal" class="close">
+        <div id="modal-bg"></div>
+        <div id="modal-dialog">
+            <div class="modal-close-btn close-icon pointer">&timesd;</div>
+            <form class="text-center modal-event d-flex flex-column align-items-center w-100 mx-auto">
+                <h1>EDIT EVENT</h1>
+                <div class="w-100 form-group flex-column d-flex justify-content-between">
+                    <input type="text" name="name" placeholder="name" />
+                    <input type="text" name="location" placeholder="location" />
+                </div>
+                <div class="w-100 form-group flex-column d-flex justify-content-between">
+                    <label class="text-left" for="start-date"> Start Date
+                        <input class="w-100" name="start_date" id="start-date" type="date"
+                            placeholder="start_date" /></label>
+                    <label class="text-left" for="start-date"> End Date<input class="w-100" name="end_date" w-100
+                            type="date" placeholder="end_date" /></label>
+
+                </div>
+                <textarea maxlength="200" name="description" placeholder="description" class="w-100"
+                    rows="3"></textarea>
+                <button type="button" class="submit btn green-bg border-none anim ">save</button>
+            </form>
+            <form class="modal-speaker flex-column align-items-center w-100 mx-auto">
+                <h1>ADD SPEAKERS</h1>
+                <div class="form-group w-100">
+                    <input type="text" style="width: 100%;" name="name" placeholder="name" />
+                </div>
+
+                <div class="form-group w-100">
+                    <input type="text" style="width: 100%;" name="desc" placeholder="job title" />
+                </div>
+
+                <button type="button" class="submit btn green-bg border-none anim modal-close-btn">save</button>
+            </form>
+            <form class="text-center modal-event-type flex-column align-items-center w-100 mx-auto">
+                <h1>ADD EVENT TYPES</h1>
+                <div class="form-group w-100">
+                    <label class="text-center w-100 d-block" style="width: 100%;" for="event-type">Event types<select
+                            class="w-100" id="event-type" name="event-types">
+                            <option value="Meetup">Meetup</option>
+                        </select></label>
+                </div>
+                <button type="button" class="submit btn green-bg border-none anim modal-close-btn">save</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+<script src="./template.js"></script>
+<script src="./utilities.js"></script>
+<script src="./event-edit.js"></script>
+
+</html>
