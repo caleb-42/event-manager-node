@@ -1,0 +1,360 @@
+body {
+  flex-direction: row;
+  background-image: radial-gradient(#fff, #fff, #ccc);
+}
+
+/* ---------------nav CSS---------------- */
+nav .logo h1 {
+  color: #fff;
+}
+nav .header .search {
+  display: none;
+}
+nav .header-nav {
+  display: flex;
+  height: 220px;
+  width: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  background-size: cover;
+  overflow: hidden;
+  background-image: url("./nav-bg.svg"),
+    linear-gradient(to top right, #0c7777, #066666);
+}
+nav .header {
+  max-width: 1200px;
+}
+nav .header .search {
+  margin-right: 1rem;
+}
+nav .bottom .arrange img {
+  margin-left: 1rem;
+  cursor: pointer;
+  opacity: 0.5;
+}
+nav .bottom h2 {
+  color: #fff;
+}
+nav .bottom {
+  max-width: 1000px;
+}
+nav .middle {
+  max-width: 1200px;
+}
+nav .btn {
+  font-size: 0.85rem;
+  padding: 0.5rem 1.4rem;
+}
+nav .bottom .arrange img:nth-child(2) {
+  opacity: 1;
+}
+body.grid nav .bottom .arrange img:nth-child(2) {
+  opacity: 0.5;
+}
+body.grid nav .bottom .arrange img:first-child {
+  opacity: 1;
+}
+
+/* -------Item CSS ---------- */
+main .item {
+  width: 100%;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+body.grid main .item {
+  height: 180px;
+  margin-bottom: 30px;
+}
+main .item-con {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  max-width: 1000px;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 1.5rem;
+}
+body.grid main .item-con {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+/* -------grid Item CSS ---------- */
+main .grid-item {
+  display: none;
+}
+
+body.grid main .grid-item {
+  display: flex;
+  position: relative;
+  width: 100%;
+  flex-direction: column;
+  background: #fff;
+  box-shadow: 0 0 10px 2px #ddd;
+  padding: 1rem;
+  border-radius: 8px;
+  height: 180px;
+  color: #6c6c6c;
+  animation: appear 0.4s ease-in-out;
+}
+body.grid main .grid-item .content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  height: 100%;
+  flex-grow: 1;
+}
+body.grid main .grid-item .content main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+}
+body.grid main .grid-item .content .title {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 170px;
+}
+body.grid main .grid-item .content .location {
+  font-size: 1rem;
+}
+body.grid main .grid-item .meta {
+  font-size: 0.85rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: right;
+}
+body.grid main .grid-item .meta button {
+  padding: 0.5rem 0.7rem;
+  font-size: 0.85rem;
+}
+body.grid main .grid-item .meta p {
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 200px;
+}
+body.grid main .grid-item .content .date {
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+body.grid main .grid-item.special {
+  background: #ce69a0;
+}
+
+/* -------list Item CSS ---------- */
+body.grid main .list-item {
+  display: none;
+}
+.list-item {
+  display: flex;
+  position: relative;
+  width: 100%;
+  align-items: center;
+  animation: appear 0.4s ease-in-out;
+  padding-bottom: 1rem;
+  border-bottom: 0.5px solid #ccc;
+}
+.list-item .content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  padding: 0.5rem 0 0.5rem 1rem;
+  flex-grow: 1;
+}
+.list-item .content .main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-grow: 1;
+}
+.list-item .content .title {
+  color: #3d3d3d;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.list-item .content .location {
+  font-size: 1rem;
+  color: #8e8e8e;
+}
+.list-item .content .meta {
+  font-size: 0.85rem;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  color: #8e8e8e;
+}
+body main .list-item .meta p {
+  margin-bottom: 0.5rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 150px;
+}
+body main .list-item .meta button {
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+}
+.list-item .date {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 90px;
+  width: 70px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  background: #fff;
+  box-shadow: 0 0 10px 2px #ddd;
+  color: #6c6c6c;
+  border-radius: 8px;
+}
+.list-item .date.special {
+  background: #ce69a0;
+}
+
+/* ------------modal CSS ------------ */
+#modal #modal-dialog {
+  max-width: 716px;
+  height: 620px;
+}
+#modal-dialog form {
+  margin-bottom: 200px;
+  padding: 20px;
+}
+#modal-dialog form .form-group > input,
+#modal-dialog form .form-group > label,
+#modal-dialog form textarea {
+  margin-bottom: 25px;
+  width: 100%;
+}
+#modal-dialog form textarea {
+  text-align: left;
+  resize: none;
+}
+#modal-dialog h1 {
+  font-size: 1.5rem;
+  color: var(--green);
+  margin-bottom: 40px;
+}
+
+@media (min-width: 576px) {
+  .list-item .content {
+    padding: 0.5rem 0 0.5rem 1rem;
+  }
+
+  body.grid main .item-con {
+    justify-content: space-between;
+  }
+
+  .list-item .content {
+    justify-content: space-between;
+  }
+  body.grid main .item {
+    margin-right: /* 1.7rem */ 3%;
+    width: calc(100% / 2.3);
+  }
+
+  .list-item .content .title {
+    width: 250px;
+  }
+  .list-item .content {
+    flex-direction: row;
+  }
+  .list-item .content .meta {
+    flex-direction: column;
+    align-items: flex-end;
+  }
+  body main .list-item .meta button {
+    margin-top: 0.5rem;
+  }
+  body main .list-item .meta p {
+    white-space: normal;
+    width: auto;
+  }
+  #modal-dialog form .form-group {
+    flex-direction: row;
+  }
+  #modal-dialog form .form-group label {
+    width: 48%;
+  }
+  #modal-dialog form .form-group > input {
+    width: 48%;
+  }
+  #modal-dialog form textarea {
+    height: 230px;
+  }
+  body main .list-item .meta p {
+    text-align: right;
+  }
+}
+
+@media (min-width: 768px) {
+  nav .bottom h2 {
+    font-size: 2rem;
+  }
+  body.grid main .grid-item {
+    display: flex;
+  }
+  body.grid main .item-con {
+    justify-content: flex-start;
+  }
+
+  body.grid main .item {
+    width: 100%;
+  }
+  .list-item .content {
+    padding-left: 2rem;
+  }
+  /* body {
+    display: inline-block;
+  }
+  aside {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .main-con {
+    display: inline-block;
+    vertical-align: middle;
+    width: 75%;
+    height: 100%;
+  } */
+}
+
+@media (min-width: 992px) {
+  nav .middle {
+    display: none;
+  }
+  .list-item .content .title {
+    width: 450px;
+  }
+  nav .header .search {
+    display: inline-block;
+  }
+  nav .header-nav {
+    height: 180px;
+  }
+  body.grid main .item {
+    margin-right: 3%;
+    width: calc(100% / 2.3);
+  }
+}
+
+@media (min-width: 1200px) {
+  body.grid main .item {
+    width: calc(100% / 3.3);
+  }
+}

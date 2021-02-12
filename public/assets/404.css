@@ -94,6 +94,9 @@ body {
   color: #000;
   font-weight: 400;
 }
+.notfound button.btn {
+  border: none;
+}
 
 /* 
 .notfound a:hover {
