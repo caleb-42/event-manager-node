@@ -3,7 +3,6 @@ const joi = require("joi");
 module.exports = {
   validateLogIn: (user) => {
     const schema = {
-      /* id: joi.number().equal(0), */
       username: joi.string().required(),
       password: joi.string().min(5).max(255).required(),
     };
@@ -14,11 +13,6 @@ module.exports = {
       name: joi.string().required(),
       description: joi.string().min(3).required(),
       location: joi.string(),
-      event_types: joi
-        .array()
-        .unique()
-        .items(joi.number().integer())
-        .required(),
       start_date: joi.date().iso().required(),
       end_date: joi.date().iso().required(),
     };
@@ -41,7 +35,8 @@ module.exports = {
   validateUpdateEvent: (user) => {
     const schema = {
       name: joi.string(),
-      description: joi.string().max(3),
+      description: joi.string().min(3),
+      location: joi.string(),
       speakers: joi
         .array()
         .unique((a, b) => a.name === b.name)
