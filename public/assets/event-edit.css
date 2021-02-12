@@ -59,6 +59,15 @@ body .item-block p {
 body main .item-con .event-types-con {
   margin-bottom: 3rem;
 }
+body main .item-con .event-types-con .event-types {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 400px;
+  margin: 0 auto;
+}
+body main .item-con .event-types-con div.types .chip {
+  margin-top: 1rem;
+}
 body main .item-con .event-types {
   justify-content: center;
   display: flex;
@@ -81,13 +90,14 @@ body main .item-con .speakers .speaker-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  max-width: 350px;
   width: 100%;
 }
 body main .item-con .speakers .speaker-list .speaker {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 1rem 2rem;
+  padding: 1rem 1rem;
 }
 body main .item-con .speakers .speaker-list .speaker .dp {
   width: 110px;
@@ -188,10 +198,24 @@ body main .item-con .speakers .speaker-list .speaker span {
     border-radius: 7px;
     margin-bottom: 150px;
   }
+  body main .item-con .speakers .speaker-list {
+    padding: 1rem;
+    max-width: 450px;
+  }
 }
 
 @media (min-width: 992px) {
   body .item-block p {
     max-width: 650px;
+  }
+  body main .item-con .speakers .speaker-list {
+    max-width: 550px;
+  }
+}
+
+@media (min-width: 1200px) {
+  body main .item-con .speakers .speaker-list {
+    padding: 1rem 2rem;
+    max-width: 700px;
   }
 }

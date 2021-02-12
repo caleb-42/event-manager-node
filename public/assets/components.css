@@ -156,12 +156,17 @@
   height: 349px;
   border-radius: 8px;
   background: #fff;
-  top: 0;
+  top: 0%;
   left: 0;
   right: 0;
   bottom: 0;
   margin: auto;
   animation: modal-dialog-appear 0.3s ease-in;
+}
+@media (min-width: 567px) {
+  #modal #modal-dialog {
+    bottom: 20%;
+  }
 }
 #modal #modal-dialog .close-icon {
   position: absolute;

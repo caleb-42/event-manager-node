@@ -52,7 +52,7 @@
                         <div class="d-flex justify-content-center align-items-center">
                             <button id="edit-event-type" class="btn green anim">Add Event type</button>
                         </div>
-                        <span></span>
+                        <div class="types"></div>
                     </div>
                     <div class="d-flex justify-content-center align-items-center">
                         <button id="edit-speaker" class="btn green anim">Add Speaker</button>
@@ -77,27 +77,29 @@
             <form class="text-center modal-event d-flex flex-column align-items-center w-100 mx-auto">
                 <h1>EDIT EVENT</h1>
                 <div class="w-100 form-group flex-column d-flex justify-content-between">
-                    <input type="text" placeholder="name" />
-                    <input type="text" placeholder="location" />
+                    <input type="text" name="name" placeholder="name" />
+                    <input type="text" name="location" placeholder="location" />
                 </div>
                 <div class="w-100 form-group flex-column d-flex justify-content-between">
                     <label class="text-left" for="start-date"> Start Date
-                        <input class="w-100" id="start-date" type="date" placeholder="start_date" /></label>
-                    <label class="text-left" for="start-date"> End Date<input class="w-100" w-100 type="date"
-                            placeholder="end_date" /></label>
+                        <input class="w-100" name="start_date" id="start-date" type="date"
+                            placeholder="start_date" /></label>
+                    <label class="text-left" for="start-date"> End Date<input class="w-100" name="end_date" w-100
+                            type="date" placeholder="end_date" /></label>
 
                 </div>
-                <textarea maxlength="200" placeholder="description" class="w-100" rows="3"></textarea>
+                <textarea maxlength="200" name="description" placeholder="description" class="w-100"
+                    rows="3"></textarea>
                 <button type="button" class="submit btn green-bg border-none anim ">save</button>
             </form>
             <form class="modal-speaker flex-column align-items-center w-100 mx-auto">
                 <h1>ADD SPEAKERS</h1>
                 <div class="form-group w-100">
-                    <input type="text" style="width: 100%;" placeholder="name" />
+                    <input type="text" style="width: 100%;" name="name" placeholder="name" />
                 </div>
 
                 <div class="form-group w-100">
-                    <input type="text" style="width: 100%;" placeholder="job title" />
+                    <input type="text" style="width: 100%;" name="desc" placeholder="job title" />
                 </div>
 
                 <button type="button" class="submit btn green-bg border-none anim modal-close-btn">save</button>

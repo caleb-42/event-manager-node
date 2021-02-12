@@ -68,21 +68,23 @@
         <div id="modal-bg"></div>
         <div id="modal-dialog" class="w-100">
             <div class="modal-close-btn close-icon pointer">&timesd;</div>
-            <form class="d-flex flex-column align-items-center w-100 mx-auto static">
+            <form class="d-flex modal-event flex-column align-items-center w-100 mx-auto static">
                 <h1>NEW EVENT</h1>
                 <div class="w-100 form-group flex-column d-flex justify-content-between">
-                    <input type="text" placeholder="name" />
-                    <input type="text" placeholder="location" />
+                    <input type="text" name="name" placeholder="name" />
+                    <input type="text" name="location" placeholder="location" />
                 </div>
                 <div class="w-100 form-group flex-column d-flex justify-content-between">
-                    <label class="" for="start-date"> Start Date
-                        <input class="w-100" id="start-date" type="date" placeholder="start_date" /></label>
-                    <label class="" for="start-date"> End Date<input class="w-100" w-100 type="date"
-                            placeholder="end_date" /></label>
+                    <label class="text-left" for="start-date"> Start Date
+                        <input class="w-100" name="start_date" id="start-date" type="date"
+                            placeholder="start_date" /></label>
+                    <label class="text-left" for="start-date"> End Date<input class="w-100" name="end_date" w-100
+                            type="date" placeholder="end_date" /></label>
 
                 </div>
-                <textarea maxlength="200" placeholder="description" class="w-100" rows="3"></textarea>
-                <button type="button" class="submit btn green-bg border-none anim ">save</button>
+                <textarea maxlength="200" name="description" placeholder="description" class="w-100"
+                    rows="3"></textarea><button type="button"
+                    class="submit btn green-bg border-none anim ">save</button>
             </form>
         </div>
     </div>

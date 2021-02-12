@@ -41,11 +41,11 @@ module.exports = class EventDbHandler {
       Object.values(_event)
     );
     const createdEvent = rows[0];
-    let event_types = await this.linkEventTypes(
+    /* let event_types = await this.linkEventTypes(
       newEvent.event_types,
       createdEvent.id
-    );
-    return { ...createdEvent, event_types };
+    ); */
+    return createdEvent /* { ...createdEvent, event_types } */;
   }
 
   async updateEvent(id, newEvent, foundEvent) {
@@ -71,11 +71,13 @@ module.exports = class EventDbHandler {
 
     if (newEvent.event_types) {
       await this.unLinkEventTypes(updatedEvent.id);
-      let event_types = await this.linkEventTypes(
-        newEvent.event_types,
-        updatedEvent.id
-      );
-      updatedEvent.event_type = event_types;
+      if (newEvent.event_types.length > 0) {
+        let event_types = await this.linkEventTypes(
+          newEvent.event_types,
+          updatedEvent.id
+        );
+        updatedEvent.event_type = event_types;
+      }
       // _event.speakers = await formatSpeakers(_event.speakers);
     }
     return updatedEvent;

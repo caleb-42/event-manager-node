@@ -45,6 +45,7 @@ const eventItem = (item, uri) => {
     </div>
 `;
 };
+
 const eventEditItem = (item, uri) => {
   let [day, month, year] = new Date(item.start_date)
     .toLocaleString("default", {
@@ -54,7 +55,7 @@ const eventEditItem = (item, uri) => {
     })
     .split(" ");
   return `
-    <div onclick="window.location='${uri}/${item.id}'" class="item w-100">
+    <div data-id="${item.id}" data-path="${uri}/${item.id}" class="item w-100">
         <div class="list-item">
             <div class="date">
                 <p>${day}</p>
@@ -66,10 +67,12 @@ const eventEditItem = (item, uri) => {
                     <p class="location">${item.location}</p>
                 </div>
                 <div class="meta">
-                    <p class="event-types">${item.event_types
-                      .map((val) => val.name)
-                      .join(" | ")}</p>
-                      <button class="btn red anim">Delete</button>
+                    <p class="event-types">${
+                      item.event_types
+                        ? item.event_types.map((val) => val.name).join(" | ")
+                        : ""
+                    }</p>
+                      <button class="btn red anim remove-event">Delete</button>
                 </div>
             </div>
         </div>
@@ -85,10 +88,12 @@ const eventEditItem = (item, uri) => {
                 </div>
             </div>
             <div class="meta">
-                <p class="event-types">${item.event_types
-                  .map((val) => val.name)
-                  .join(" | ")}</p>
-                  <button class="btn red anim">Delete</button>
+                <p class="event-types">${
+                  item.event_types
+                    ? item.event_types.map((val) => val.name).join(" | ")
+                    : ""
+                }</p>
+                  <button  class="btn red anim remove-event">Delete</button>
             </div>
         </div>
     </div>
@@ -129,13 +134,6 @@ const registrationItem = (item) => {
 `;
 };
 const eventTypeItem = (item) => {
-  let [day, month, year] = new Date(item.start_date)
-    .toLocaleString("default", {
-      month: "short",
-      day: "numeric",
-      year: "numeric",
-    })
-    .split(" ");
   return `
     <div class="item w-100">
         <div class="grid-item">
@@ -144,6 +142,10 @@ const eventTypeItem = (item) => {
         </div>
     </div>
 `;
+};
+
+const eventTypeListItem = (item) => {
+  return `<option value="${item.id}">${item.name}</option>`;
 };
 
 const loader = () => `<div class="loader-con flex-grow d-flex justify-content-center align-items-center">
@@ -174,12 +176,18 @@ const singleEventTitleLocation = (item) => `<h1>${item.name}</h1>
 
 const singleEventBody = (item) => `${item.description}`;
 
-const singleEditEventTypes = (item) =>
-  `<div class="event-types">${item.event_types
-    .map(
-      (val) => `<div class="chip pointer">${val.name}&nbsp;&nbsp;&times;</div>`
-    )
-    .join("")}</div>`;
+const singleEditEventTypes = (item) => {
+  return `<div class="event-types">${
+    item.event_types
+      ? item.event_types
+          .map(
+            (val) =>
+              `<div data-id="${val.id}" class="chip pointer">${val.name}&nbsp;&nbsp;&times;</div>`
+          )
+          .join("")
+      : ""
+  }</div>`;
+};
 
 const singleEditEventSpeakers = (item) => {
   return item.speakers
@@ -193,11 +201,11 @@ const singleEditEventSpeakers = (item) => {
               ")"
             : ""
         }">
-        <div class="remove-icon">&times;</div>
+        <div data-name="${speaker.name}" class="remove-icon">&times;</div>
         </div>
         <div class="details">
             <h6>${speaker.name}</h6>
-            <span>Software Developer</span>
+            <span>${speaker.desc}</span>
         </div>
     </div>
   `
