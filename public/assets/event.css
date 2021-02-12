@@ -1,0 +1,175 @@
+body {
+  overflow-y: auto;
+}
+nav {
+  width: 100%;
+  display: block;
+}
+.header-nav {
+  display: flex;
+  height: 250px;
+  width: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  background-size: cover;
+  overflow: hidden;
+  background-image: url("./nav-bg.svg"),
+    linear-gradient(to top right, #00ae99, #00aeae);
+}
+nav .header {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+}
+nav .header .date-con .date {
+  max-width: 1200px;
+  width: 100%;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+}
+nav .middle {
+  text-align: center;
+}
+nav .middle h1 {
+  text-align: center;
+  font-size: 25px;
+  color: white;
+}
+nav .middle h5 {
+  text-align: center;
+  font-weight: 400;
+  color: white;
+}
+nav .bottom {
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+nav .middle {
+  display: inline-block;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+}
+nav .btn {
+  padding: 0.5rem 1.4rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+nav .btn:focus {
+  outline: none;
+}
+body {
+  background-image: radial-gradient(#fff, #fff, #eee);
+}
+body main {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  /* overflow-y: auto; */
+  width: 100%;
+}
+body .item-block {
+  max-width: 900px;
+  display: block;
+  width: 100%;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+}
+body .item-block p {
+  color: #8e8e8e;
+  margin: 0 auto;
+  margin-bottom: 3rem;
+  width: 100%;
+}
+body main .item-con {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  text-align: center;
+}
+body main .item-con .event-types {
+  color: #00aeae;
+  margin-bottom: 3rem;
+  width: 100%;
+}
+body main .item-con .speakers {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+}
+body main .item-con .speakers h3 {
+  text-align: center;
+  font-size: 28px;
+  color: #6c6c6c;
+  margin-bottom: 1.5rem;
+}
+body main .item-con .speakers .speaker-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+}
+body main .item-con .speakers .speaker-list .speaker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem 2rem;
+}
+body main .item-con .speakers .speaker-list .speaker .dp {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: #ccc;
+  margin-bottom: 1rem;
+}
+body main .item-con .speakers .speaker-list .speaker h6 {
+  font-size: 1.3rem;
+}
+body main .item-con .speakers .speaker-list .speaker span {
+  font-size: 0.85rem;
+}
+
+body #modal-dialog form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 300px;
+  margin-bottom: 200px;
+  padding: 20px;
+  margin: 0 auto;
+}
+body #modal-dialog form input {
+  margin-bottom: 30px;
+  width: 100%;
+}
+body #modal-dialog h1 {
+  font-size: 2rem;
+  color: var(--green);
+  margin-bottom: 40px;
+}
+@media (min-width: 576px) {
+  body .item-block {
+    padding: 3rem;
+  }
+  body .item-block p {
+    width: 90%;
+  }
+  nav .middle h1 {
+    font-size: 30px;
+  }
+}
+
+@media (min-width: 768px) {
+  body #modal-dialog form {
+    border-radius: 7px;
+    margin-bottom: 150px;
+  }
+}
