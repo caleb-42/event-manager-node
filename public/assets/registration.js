@@ -79,6 +79,7 @@
     requestCycle.START();
     server({
       url: `registration/notify?id=${id}` /* "error" */,
+      method: "PATCH",
       resolve: (res) => {
         fetchRegistrations();
         requestCycle.GOOD();
