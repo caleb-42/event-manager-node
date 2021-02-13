@@ -28,13 +28,26 @@
   let params = window.location.href.split("/");
   let event = params[params.length - 1];
 
+  const eventFormObj = document.querySelector("form.modal-event");
+  const eventReqResError = document.querySelector(
+    ".modal-event .req-res .error-hd"
+  );
+
+  const speakerFormObj = document.querySelector("form.modal-speaker");
+  const speakerReqResError = document.querySelector(
+    ".modal-speaker .req-res .error-hd"
+  );
+
+  const eventTypeReqResError = document.querySelector(
+    ".modal-event-type .req-res .error-hd"
+  );
+
   /* ------MAKERS------- */
   const makeEventTypes = (res) => {
     document.querySelector(
       "main .item-con .event-types-con div.types"
     ).innerHTML = singleEditEventTypes(res);
     document.querySelectorAll(".event-types .chip").forEach((item) => {
-      console.log(item);
       item.addEventListener("click", (e) => {
         deleteEventType(item.dataset.id);
       });
@@ -68,7 +81,6 @@
       ? `<div class="speaker-list">${speakerList}</div>`
       : "";
     document.querySelectorAll(".speaker .remove-icon").forEach((item) => {
-      console.log(item);
       item.addEventListener("click", (e) => {
         deleteSpeaker(item.dataset.name);
       });
@@ -87,7 +99,6 @@
     if (state.event && state.event.speakers) oldSpeakers = state.event.speakers;
 
     const speakers = oldSpeakers.filter((element) => element.name !== name);
-    console.log(speakers);
     editEventItem({ speakers });
   };
 
@@ -100,7 +111,6 @@
       (element) => element.id !== Number(id)
     );
     const event_types = eventTypes.map((item) => item.id);
-    console.log(eventTypes, event_types, id);
     editEventItem({ event_types });
   };
 
@@ -111,10 +121,19 @@
 
     const eventTypes = oldEventTypes.map((item) => item.id);
     eventTypes.push(form["event-types"]);
-    console.log(eventTypes);
-    editEventItem({ event_types: eventTypes }).then(() => {
-      switchClass("#modal", "close", "add");
-    });
+
+    eventTypeReqResError.innerHTML = "";
+    switchClass("#event-type-req-res", "async", "add");
+    editEventItem({ event_types: eventTypes })
+      .then(() => {
+        switchClass("#modal", "close", "add");
+      })
+      .catch((e) => {
+        eventTypeReqResError.innerHTML = e;
+      })
+      .finally(() => {
+        switchClass("#event-type-req-res", "async", "remove");
+      });
   };
 
   const addSpeaker = (form) => {
@@ -124,10 +143,21 @@
 
     const eventSpeakers = oldEventSpeakers.map((item) => item);
     eventSpeakers.push(form);
-    console.log(eventSpeakers);
-    editEventItem({ speakers: eventSpeakers }).then(() => {
-      switchClass("#modal", "close", "add");
-    });
+
+    speakerReqResError.innerHTML = "";
+    switchClass("#speakers-req-res", "async", "add");
+    editEventItem({ speakers: eventSpeakers })
+      .then(() => {
+        speakerFormObj.name.value = "";
+        speakerFormObj.desc.value = "";
+        switchClass("#modal", "close", "add");
+      })
+      .catch((e) => {
+        speakerReqResError.innerHTML = e;
+      })
+      .finally(() => {
+        switchClass("#speakers-req-res", "async", "remove");
+      });
   };
 
   const editEvent = (form) => {
@@ -144,10 +174,23 @@
       description: form.description || oldEvent.description,
     };
 
-    console.log(event);
-    editEventItem(event).then(() => {
-      switchClass("#modal", "close", "add");
-    });
+    eventReqResError.innerHTML = "";
+    switchClass("#event-req-res", "async", "add");
+    editEventItem(event)
+      .then(() => {
+        eventFormObj.name.value = "";
+        eventFormObj.location.value = "";
+        eventFormObj.start_date.valueAsDate = null;
+        eventFormObj.end_date.valueAsDate = null;
+        eventFormObj.description.value = "";
+        switchClass("#modal", "close", "add");
+      })
+      .catch((e) => {
+        eventReqResError.innerHTML = e;
+      })
+      .finally(() => {
+        switchClass("#event-req-res", "async", "remove");
+      });
   };
 
   /* --------RETRIEVERS--------- */
@@ -156,7 +199,6 @@
     document.querySelector(`${form} .submit`).addEventListener("click", (e) => {
       let formObj = document.querySelector(`form${form}`);
       const formVals = formToJson(formObj);
-      console.log(formVals);
       submitMethod(formVals);
     });
   };
@@ -174,8 +216,6 @@
           ).innerHTML = errorMsg("Item not found"));
         }
         state.event = res.data;
-        console.log(state);
-        console.log(res);
         requestCycle.GOOD();
         makePageItem(res.data);
       },
@@ -195,12 +235,11 @@
           if (res.data) {
             fetchEventItem();
           }
-          console.log(res);
-          resolve();
+          resolve(res);
         },
         reject: (err) => {
           requestCycle.BAD();
-          reject();
+          reject(err);
         },
       });
     });
@@ -222,5 +261,4 @@
   createFormSubmit(".modal-event-type", addEventType);
   createFormSubmit(".modal-speaker", addSpeaker);
   createFormSubmit(".modal-event", editEvent);
-  console.log(state);
 })();

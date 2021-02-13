@@ -16,7 +16,6 @@ const methods = {
           { name: body.name },
           ["name"]
         );
-        console.log(foundEventType);
         if (foundEventType) {
           return utils.response(res, {
             message: "event type already exist",
@@ -33,7 +32,6 @@ const methods = {
           status: 201,
         });
       } catch (e) {
-        console.log(e);
         return utils.response(res, {
           message: "Server Error",
           status: 500,
@@ -48,7 +46,6 @@ const methods = {
         status: 200,
       });
     } catch (e) {
-      console.log(e);
       return utils.response(res, {
         message: "Server Error",
         status: 500,
@@ -60,7 +57,6 @@ const methods = {
       const {
         queryString: { id },
       } = data;
-      console.log(id);
       let foundEventType = await dbHandler.find("event_types", { id }, ["id"]);
       if (!foundEventType) {
         return utils.response(res, {
@@ -90,7 +86,6 @@ const methods = {
         status: 200,
       });
     } catch (e) {
-      console.log(e);
       return utils.response(res, {
         message: "Server Error",
         status: 500,

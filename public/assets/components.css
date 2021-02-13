@@ -164,11 +164,11 @@
   margin: auto;
   animation: modal-dialog-appear 0.3s ease-in;
 }
-@media (min-width: 567px) {
+/* @media (min-width: 567px) {
   #modal #modal-dialog {
     bottom: 20%;
   }
-}
+} */
 #modal #modal-dialog .close-icon {
   position: absolute;
   top: 15px;
@@ -179,6 +179,25 @@
 #modal.close #modal-dialog,
 #modal.close #modal-bg {
   display: none;
+}
+
+#modal .req-res.async .loader {
+  display: block;
+}
+
+#modal .req-res .loader {
+  display: none;
+}
+
+#modal .req-res.async button,
+#modal .req-res.async .error-hd {
+  display: none;
+}
+
+#modal .req-res .error-hd {
+  text-align: center;
+  font-size: 0.85rem;
+  max-width: 400px;
 }
 
 @keyframes appear {

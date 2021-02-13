@@ -60,7 +60,6 @@ utils.serveStaticFiles = function (url, res) {
     ".wasm": "application/wasm",
   };
   const contentType = mimeTypes[extname] || "application/octet-stream";
-  console.log(filePath);
   fs.readFile(filePath, (err, content) => {
     if (err) {
       const fileP = `./public/assets/404.html`;
@@ -140,7 +139,6 @@ utils.formatSpeakers = async (spkrs) => {
 
 utils.updateSpeakers = async (spkrs) => {
   let speakers = [];
-  console.log(spkrs);
   let faces = await utils.getPics();
 
   speakers = spkrs.map((item, ind) => {

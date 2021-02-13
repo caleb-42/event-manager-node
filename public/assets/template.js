@@ -1,7 +1,10 @@
 const eventItem = (item, uri) => {
-  let isSpecial = item.event_types.find((item) => {
-    return ["Leap", "Recruiting Mission", "Hackathon"].includes(item.name);
-  });
+  let isSpecial = false;
+  if (item.event_types) {
+    isSpecial = item.event_types.find((item) => {
+      return ["Leap", "Recruiting Mission", "Hackathon"].includes(item.name);
+    });
+  }
   let [day, month, year] = new Date(item.start_date)
     .toLocaleString("default", {
       month: "short",
@@ -26,7 +29,7 @@ const eventItem = (item, uri) => {
                 <div class="meta">
                     <p class="event-types">${
                       item.event_types
-                        ? item.event_types
+                        ? (item.event_types || [])
                             .map((val) =>
                               [
                                 "Leap",
@@ -66,9 +69,12 @@ const eventItem = (item, uri) => {
 };
 
 const eventEditItem = (item, uri) => {
-  let isSpecial = item.event_types.find((item) => {
-    return ["Leap", "Recruiting Mission", "Hackathon"].includes(item.name);
-  });
+  let isSpecial = false;
+  if (item.event_types) {
+    isSpecial = item.event_types.find((item) => {
+      return ["Leap", "Recruiting Mission", "Hackathon"].includes(item.name);
+    });
+  }
   let [day, month, year] = new Date(item.start_date)
     .toLocaleString("default", {
       month: "short",
@@ -78,8 +84,8 @@ const eventEditItem = (item, uri) => {
     .split(" ");
   return `
     <div data-id="${item.id}" data-path="${uri}/${item.id}" class="item w-100 ${
-      isSpecial ? "special" : ""
-    }">
+    isSpecial ? "special" : ""
+  }">
         <div class="list-item">
             <div class="date">
                 <p>${day}</p>
@@ -93,7 +99,7 @@ const eventEditItem = (item, uri) => {
                 <div class="meta">
                     <p class="event-types">${
                       item.event_types
-                        ? item.event_types
+                        ? (item.event_types || [])
                             .map((val) =>
                               [
                                 "Leap",

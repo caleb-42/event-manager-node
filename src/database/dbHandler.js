@@ -31,7 +31,6 @@ class DbHandler {
       if (query.length - 1 > index) str += " AND";
       param.push(body[key[index]]);
     });
-    console.log(str, param);
     const { rows } = await this.pool.query(str, param);
     return rows.length === 0 ? null : rows[0];
   }

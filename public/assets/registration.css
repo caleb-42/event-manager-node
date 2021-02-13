@@ -75,7 +75,7 @@ main .item-con {
 }
 .list-item .content .title {
   color: #3d3d3d;
-  font-size: 1.4rem;
+  font-size: 1.1rem;
   margin-bottom: 0.5rem;
 }
 .list-item .content .location {
@@ -94,7 +94,7 @@ main .item-con {
   align-items: center;
   height: 90px;
   width: 70px;
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: 700;
   background: #fff;
   box-shadow: 0 0 10px 2px #ddd;

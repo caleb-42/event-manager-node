@@ -9,7 +9,6 @@
     document.querySelector(`${form} .submit`).addEventListener("click", (e) => {
       let formObj = document.querySelector(`form${form}`);
       const formVals = formToJson(formObj);
-      console.log(formVals);
       submitMethod(formVals);
     });
   };
@@ -24,7 +23,6 @@
           window.localStorage.setItem("user", res.data.token);
           window.location = "/admin-events.html";
         }
-        console.log(res);
       },
       reject: (err) => {
         requestCycle.BAD();

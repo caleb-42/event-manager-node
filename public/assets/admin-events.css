@@ -230,7 +230,7 @@ body main .list-item .meta button {
   align-items: center;
   height: 90px;
   width: 70px;
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: 700;
   background: #fff;
   box-shadow: 0 0 10px 2px #ddd;
@@ -247,7 +247,6 @@ body main .list-item .meta button {
   height: 620px;
 }
 #modal-dialog form {
-  margin-bottom: 200px;
   padding: 20px;
 }
 #modal-dialog form .form-group > input,
@@ -270,7 +269,10 @@ body main .list-item .meta button {
   .list-item .content {
     padding: 0.5rem 0 0.5rem 1rem;
   }
-
+  /* 
+  #modal #modal-dialog {
+    bottom: 20%;
+  } */
   body.grid main .item-con {
     justify-content: space-between;
   }

@@ -33,7 +33,6 @@ module.exports = class EventDbHandler {
       "start_date",
       "end_date",
     ]);
-    console.log(_event);
     _event.speakers = JSON.stringify([]);
     const { rows } = await this.pool.query(
       `INSERT INTO events (
@@ -50,7 +49,6 @@ module.exports = class EventDbHandler {
   }
 
   async updateEvent(id, newEvent, foundEvent) {
-    console.log("foundEvent", foundEvent);
     const _event = {
       name: newEvent.name || foundEvent.name,
       description: newEvent.description || foundEvent.description,
@@ -109,7 +107,6 @@ module.exports = class EventDbHandler {
       },
       { values: [], keys: "" }
     );
-    console.log(prepSql);
     const { rows } = await this.pool.query(
       `INSERT INTO events_event_types (
         event_id, event_type_id) 

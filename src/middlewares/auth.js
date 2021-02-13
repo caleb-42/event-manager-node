@@ -25,7 +25,6 @@ module.exports = {
       }
       token = authHeader.substring(7, authHeader.length);
       const decoded = utils.verifyJWT(token);
-      console.log(authHeader, decoded);
       if (!decoded) {
         return utils.response(res, {
           error: "invalid auth token",
@@ -52,7 +51,6 @@ module.exports = {
   },
   authValidation: (data, res, next) => {
     const result = validation.validateLogIn(data.body);
-    console.log("result", result);
     if (result.error) {
       return utils.response(res, {
         status: 400,

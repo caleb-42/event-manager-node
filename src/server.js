@@ -9,7 +9,6 @@ const { authMiddleware } = require("./middlewares/auth");
 dotenv.config();
 
 const server = http.createServer(function (req, res) {
-  //console.log(req.url);
   let parsedURL = urlPackage.parse(req.url, true);
   let path = parsedURL.pathname;
   // parsedURL.pathname  parsedURL.query
@@ -17,10 +16,8 @@ const server = http.createServer(function (req, res) {
   // '/folder/to/file/' becomes 'folder/to/file'
 
   path = path.replace(/^\/+|\/+$/g, "");
-  console.log("path", path);
 
   const { url: val } = req;
-  console.log("url", val);
   let url = val;
   if (/\/event\/[0-9]+$/.test(val)) {
     return serveStaticFiles("/event.html", res);
@@ -43,13 +40,9 @@ const server = http.createServer(function (req, res) {
   let payload = "";
 
   req.on("data", (chunk) => {
-    payload += chunk.toString(); // convert Buffer to string
+    payload += chunk.toString();
   });
   req.on("end", function () {
-    //request part is finished... we can send a response now
-    console.log("send a response");
-    //let body = parse(payload);
-    //we will use the standardized version of the path
     let route =
       typeof routes[path] !== "undefined" ? routes[path] : routes["notFound"];
     let data = {
@@ -59,8 +52,6 @@ const server = http.createServer(function (req, res) {
       method: method.toUpperCase(),
       body: method.toUpperCase() === "GET" ? {} : JSON.parse(payload),
     };
-    //pass data incase we need info about the request
-    //pass the response object because router is outside our scope
     route(data, res);
   });
 });

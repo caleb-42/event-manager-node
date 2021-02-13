@@ -4,7 +4,6 @@ const switchClass = (target, toggleClass, type = "toggle") => {
     objs.forEach((obj) => {
       if (type === "toggle") obj.classList.toggle(toggleClass);
       if (type === "add" && !obj.classList.contains(toggleClass)) {
-        console.log(target, type, toggleClass);
         obj.classList.add(toggleClass);
       }
       if (type === "remove" && obj.classList.contains(toggleClass))
@@ -49,24 +48,15 @@ const server = ({
     .then((resp) => resp.json())
     .then((res) => {
       setTimeout(() => {
+        if (res.status && res.status !== 200 && res.status !== 201) {
+          reject(res.error);
+        }
         resolve(res);
       }, 0);
     })
     .catch((err) => {
       reject(err);
     });
-  /* 
-  try {
-    let res = dummyData({ url, method });
-    setTimeout(() => {
-      resolve(res);
-    }, 0);
-  } catch (e) {
-    console.log(e);
-    setTimeout(() => {
-      reject("something went wrong");
-    }, 0);
-  } */
 };
 
 const formToJson = (form) => {
@@ -119,168 +109,4 @@ const requestCycle = {
     switchClass(".loader-con", "gone", "add");
     switchClass(".server-message-con", "gone", "remove");
   },
-};
-
-const dummyData = ({ url, method }) => {
-  const data = {
-    "api/event-types": {
-      GET: [
-        {
-          id: 1,
-          name: "MeetUp",
-          created_at: "2021-02-11T00:33:51.601Z",
-          admin_id: 1,
-        },
-        {
-          id: 2,
-          name: "Leap",
-          created_at: "2021-02-11T00:33:51.601Z",
-          admin_id: 1,
-        },
-        {
-          id: 3,
-          name: "Recruiting",
-          created_at: "2021-02-11T00:33:51.601Z",
-          admin_id: 1,
-        },
-        {
-          id: 4,
-          name: "Mission",
-          created_at: "2021-02-11T00:33:51.601Z",
-          admin_id: 1,
-        },
-        {
-          id: 5,
-          name: "Premium-only Webinar",
-          created_at: "2021-02-11T00:33:51.601Z",
-          admin_id: 1,
-        },
-        {
-          id: 6,
-          name: "Open Webinar",
-          created_at: "2021-02-11T00:33:51.601Z",
-          admin_id: 1,
-        },
-      ],
-    },
-    "api/registration": {
-      GET: [
-        {
-          event_name: "awqwwqf",
-          start_date: "2020-12-31T23:00:01.000Z",
-          id: 1,
-          email: "ewibaba391993@gmail.com",
-          name: "james",
-          notified: true,
-          event_id: 1,
-          created_at: "2021-02-11T23:45:19.887Z",
-        },
-        {
-          event_name: "awqwwqf",
-          start_date: "2020-12-31T23:00:01.000Z",
-          id: 1,
-          email: "ewibaba391993@gmail.com",
-          name: "james",
-          notified: false,
-          event_id: 1,
-          created_at: "2021-02-11T23:45:19.887Z",
-        },
-        {
-          event_name: "awqwwqf",
-          start_date: "2020-12-31T23:00:01.000Z",
-          id: 1,
-          email: "ewibaba391993@gmail.com",
-          name: "james",
-          notified: true,
-          event_id: 1,
-          created_at: "2021-02-11T23:45:19.887Z",
-        },
-      ],
-    },
-    "api/events": {
-      GET: [
-        {
-          id: 1,
-          name: "Open Coffee",
-          location: "lagos, Nigeria",
-          description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-          industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type
-          and scrambled it to make a type specimen book. It has survived not only five centuries, but also the
-          leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s
-          with the release of Letraset sheets containing Lorem`,
-          start_date: "2020-12-31T23:00:01.000Z",
-          end_date: "2021-01-05T23:00:01.000Z",
-          speakers: [
-            {
-              name: "paul",
-              desc: "engineer",
-              pic: "/avatar.png",
-            },
-            {
-              name: "jmaes",
-              desc: "singer",
-              pic: "/avatar.png",
-            },
-          ],
-          event_types: [
-            {
-              id: 1,
-              name: "MeetUp",
-            },
-            {
-              id: 2,
-              name: "Leap",
-            },
-          ],
-        },
-        {
-          id: 2,
-          name: "DevFest",
-          location: "lagos, Nigeria",
-          description: "wonderful meeting",
-          start_date: "2020-12-31T23:00:01.000Z",
-          end_date: "2021-01-05T23:00:01.000Z",
-          speakers: [],
-          event_types: [
-            {
-              id: 1,
-              name: "Cruise",
-            },
-            {
-              id: 2,
-              name: "Jump",
-            },
-          ],
-        },
-        {
-          id: 3,
-          name: "DevFest",
-          location: "lagos, Nigeria",
-          description: "wonderful meeting",
-          start_date: "2020-12-31T23:00:01.000Z",
-          end_date: "2021-01-05T23:00:01.000Z",
-          speakers: [],
-          event_types: [
-            {
-              id: 1,
-              name: "Cruise",
-            },
-            {
-              id: 2,
-              name: "Jump",
-            },
-          ],
-        },
-      ],
-    },
-  };
-
-  if (/api\/events[?]id=[0-9]+$/.test(url)) {
-    let params = window.location.href.split("/");
-    let event = params[params.length - 1];
-    console.log(event);
-    return data["api/events"]["GET"].find((item) => item.id == event);
-  }
-
-  return data[url][method];
 };

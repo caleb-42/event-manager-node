@@ -8,14 +8,11 @@
 
   const notify = (item) => {
     const id = item.dataset.id;
-    console.log(id);
     notifyUsers(id);
   };
 
   document.querySelectorAll("input.search-input").forEach((item) => {
-    console.log(item);
     item.addEventListener("input", (e) => {
-      console.log("asc", e.target.value);
       searchRegistration(e.target.value);
     });
   });
@@ -36,7 +33,6 @@
     server({
       url: "event/registration" /* "error" */,
       resolve: (res) => {
-        console.log(res);
         if (res.data.length === 0) {
           requestCycle.BAD();
           return (document.querySelector(
@@ -64,7 +60,6 @@
             ".server-message"
           ).innerHTML = errorMsg("No Records found"));
         }
-        console.log(res);
         makePageList(res.data);
         requestCycle.GOOD();
       },
