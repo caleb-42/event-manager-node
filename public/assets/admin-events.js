@@ -123,6 +123,7 @@
 
   const deleteEvent = (event) => {
     return new Promise((resolve, reject) => {
+      if (!confirm("Are you sure you want to delete this item?")) return;
       server({
         url: `events?id=${event}` /* "error" */,
         method: "DELETE",

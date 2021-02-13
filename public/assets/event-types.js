@@ -93,6 +93,7 @@
 
   const deleteEventType = (eventType) => {
     return new Promise((resolve, reject) => {
+      if (!confirm("Are you sure you want to delete this item?")) return;
       server({
         url: `event-types?id=${eventType}` /* "error" */,
         method: "DELETE",
