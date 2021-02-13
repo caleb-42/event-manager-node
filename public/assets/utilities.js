@@ -33,12 +33,12 @@ const server = ({
   contentType = { "Content-Type": "application/json" },
 }) => {
   body = JSON.stringify(body);
+  const user = window.localStorage.getItem("user");
   const payload = {
     method,
     headers: {
       ...contentType,
-      Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InN1cGVyLWFkbWluIiwiaWQiOjEsImlhdCI6MTYxMjE5Mzg5NX0.W3VOkT2lH6AjK4zc6q5iZCNCB2PUfI_c8VQlGMVOdNw",
+      Authorization: `Bearer ${user}`,
     },
     credentials: "include",
   };
