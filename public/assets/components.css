@@ -164,11 +164,11 @@
   margin: auto;
   animation: modal-dialog-appear 0.3s ease-in;
 }
-@media (min-width: 567px) {
+/* @media (min-width: 567px) {
   #modal #modal-dialog {
     bottom: 20%;
   }
-}
+} */
 #modal #modal-dialog .close-icon {
   position: absolute;
   top: 15px;
