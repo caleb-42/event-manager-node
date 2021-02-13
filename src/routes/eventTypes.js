@@ -75,7 +75,7 @@ const methods = {
         ].includes(foundEventType.name)
       ) {
         return utils.response(res, {
-          message: "you are not authorized to delete this event type",
+          error: "you are not authorized to delete this event type",
           status: 403,
         });
       }

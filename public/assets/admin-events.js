@@ -64,8 +64,9 @@
   };
 
   const createFormSubmit = (form, submitMethod = () => {}) => {
-    document.querySelector(`${form} .submit`).addEventListener("click", (e) => {
-      let formObj = document.querySelector(`form${form}`);
+    document.querySelector(`${form}`).addEventListener("submit", (e) => {
+      e.preventDefault();
+      let formObj = e.target;
       const formVals = formToJson(formObj);
       submitMethod(formVals);
     });

@@ -24,7 +24,7 @@ const methods = {
         );
         if (foundRegistration) {
           return utils.response(res, {
-            message: "you are not allowed to register for an event twice",
+            error: "you are not allowed to register for an event twice",
             status: 400,
           });
         }

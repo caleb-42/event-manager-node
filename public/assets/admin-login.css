@@ -39,6 +39,25 @@ main h1 {
   margin-bottom: 40px;
 }
 
+main .req-res.async .loader {
+  display: block;
+}
+
+main .req-res .loader {
+  display: none;
+}
+
+main .req-res.async button,
+main .req-res.async .error-hd {
+  display: none;
+}
+
+main .req-res .error-hd {
+  text-align: center;
+  font-size: 0.85rem;
+  max-width: 400px;
+}
+
 @media (min-width: 576px) {
 }
 
