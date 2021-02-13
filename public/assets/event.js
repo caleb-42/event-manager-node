@@ -20,6 +20,10 @@
       ? `<h3>Speakers</h3>
     <div class="speaker-list">${speakerList}</div>`
       : "";
+    const premium = res.event_types.find(
+      (item) => item.name === "Premium-only Webinar"
+    );
+    if (premium) switchClass("#modal-dialog", "premium", "replace");
   };
 
   const createFormSubmit = (form, submitMethod = () => {}) => {

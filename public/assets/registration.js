@@ -9,6 +9,7 @@
   const notify = (item) => {
     const id = item.dataset.id;
     console.log(id);
+    notifyUsers(id);
   };
 
   document.querySelectorAll("input.search-input").forEach((item) => {
@@ -69,6 +70,20 @@
       },
       reject: (err) => {
         document.querySelector(".server-message").innerHTML = errorMsg();
+        requestCycle.BAD();
+      },
+    });
+  };
+
+  const notifyUsers = (id) => {
+    requestCycle.START();
+    server({
+      url: `registration/notify?id=${id}` /* "error" */,
+      resolve: (res) => {
+        fetchRegistrations();
+        requestCycle.GOOD();
+      },
+      reject: (err) => {
         requestCycle.BAD();
       },
     });

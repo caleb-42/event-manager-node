@@ -135,7 +135,6 @@ body main .item-con .speakers .speaker-list .speaker h6 {
 body main .item-con .speakers .speaker-list .speaker span {
   font-size: 0.85rem;
 }
-
 body #modal-dialog form {
   display: flex;
   flex-direction: column;
@@ -150,10 +149,21 @@ body #modal-dialog form input {
   margin-bottom: 30px;
   width: 100%;
 }
+body #modal #modal-dialog form.modal-premium h1 {
+  font-size: 1rem;
+  color: #888;
+  margin-top: 1.5rem;
+}
 body #modal-dialog h1 {
   font-size: 2rem;
   color: var(--green);
   margin-bottom: 40px;
+}
+body #modal-dialog.premium .modal-register {
+  display: none;
+}
+body #modal-dialog.premium .modal-premium {
+  display: flex !important;
 }
 @media (min-width: 576px) {
   body .item-block {
