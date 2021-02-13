@@ -16,9 +16,11 @@ Bambi event manager application. TEST
 
 ## Features
 
-- Event Listing and Search
+- Event Listing and Search(list and grid view)
 - Event Registration
 - Event Creation/Edit/Delete `ADMIN`
+- Adding Event Speakers Edit/Delete `ADMIN`
+- Adding Event types Edit/Delete `ADMIN`
 - EventType Creation/Edit/Delete `ADMIN`
 - Registration search and notification `ADMIN`
 
