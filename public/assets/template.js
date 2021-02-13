@@ -281,7 +281,7 @@ const singleEventSpeakers = (item) => {
         }"></div>
         <div class="details">
             <h6>${speaker.name}</h6>
-            <span>Software Developer</span>
+            <span>${speaker.desc}</span>
         </div>
     </div>
   `
