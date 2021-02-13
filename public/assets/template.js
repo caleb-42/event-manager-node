@@ -156,8 +156,8 @@ const registrationItem = (item) => {
             </div>
             <div class="content">
                 <div class="main">
-                    <h5 class="title">${item.event_name}</h5>
-                    <p class="location">${item.email}</p>
+                    <h5 class="title">${item.email}</h5>
+                    <p class="location">${item.event_name}</p>
                 </div>
                 <div class="meta d-flex align-items-center">
                     ${

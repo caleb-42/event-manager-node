@@ -27,7 +27,7 @@ nav .header .date-con .date {
 }
 nav .middle h1 {
   text-align: center;
-  font-size: 36px;
+  font-size: 25px;
   color: white;
 }
 nav .middle h5 {
@@ -132,7 +132,7 @@ body main .item-con .speakers .speaker-list .speaker span {
 /* ------------modal CSS ------------ */
 #modal.edit-event #modal-dialog {
   max-width: 716px;
-  height: 620px;
+  height: 650px;
 }
 #modal.edit-event-type #modal-dialog {
   height: 300px;
@@ -187,6 +187,10 @@ body main .item-con .speakers .speaker-list .speaker span {
   }
   #modal-dialog form textarea {
     height: 230px;
+  }
+
+  nav .middle h1 {
+    font-size: 30px;
   }
 }
 

@@ -93,7 +93,7 @@ main .item-con {
   justify-content: center;
   align-items: center;
   height: 90px;
-  width: 70px;
+  min-width: 70px;
   font-size: 1rem;
   font-weight: 700;
   background: #fff;

@@ -15,7 +15,16 @@ utils.sendEmail = async (to, event, username) => {
   const mailOptions = {
     from: "event.manager.node.app@gmail.com",
     to,
-    text: `hello ${username}, you have successfully registered for ${event.name} \nIt will happening by ${event.start_date}, at ${event.location}`,
+    text: `hello ${username}, you have successfully registered for ${
+      event.name
+    } \nIt will be happening on ${new Date(event.start_date).toLocaleDateString(
+      "en-US",
+      {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
+      }
+    )}, at ${event.location}`,
     subject: "Bambi event Registration",
   };
 

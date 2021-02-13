@@ -55,7 +55,11 @@
                 <h1>REGISTER</h1>
                 <input type="text" name="name" placeholder="name" />
                 <input type="text" name="email" placeholder="email" />
-                <button type="button" class="submit btn green-bg border-none anim">register</button>
+                <div class="w-100 req-res d-flex justify-content-center align-items-center flex-column">
+                    <button type="button" class="submit btn green-bg border-none anim ">register</button>
+                    <div class="loader"></div>
+                    <div class="error-hd"></div>
+                </div>
             </form>
             <form class="modal-premium text-center gone">
                 <img width="120px" src="/warning.svg" />

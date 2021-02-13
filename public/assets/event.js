@@ -4,6 +4,9 @@
   let params = window.location.href.split("/");
   let event = params[params.length - 1];
 
+  const formObj = document.querySelector("form.modal-register");
+  const reqResError = document.querySelector(".req-res .error-hd");
+
   const makePageItem = (res) => {
     document.querySelector("nav .header-nav .date").innerHTML = singleEventDate(
       res
@@ -36,9 +39,24 @@
 
   const registerForEvent = (form) => {
     form.event_id = Number(event);
-    registerEvent(form).then(() => {
-      switchClass("#modal", "close", "add");
-    });
+    switchClass(".req-res", "async", "add");
+    registerEvent(form)
+      .then(() => {
+        formObj.name.value = "";
+        formObj.email.value = "";
+        reqResError.innerHTML =
+          "your registered was a success, check your email for confirmation";
+        setTimeout(() => {
+          switchClass("#modal", "close", "add");
+          reqResError.innerHTML = "";
+        }, 4500);
+      })
+      .catch((e) => {
+        reqResError.innerHTML = e;
+      })
+      .finally(() => {
+        switchClass(".req-res", "async", "remove");
+      });
   };
 
   const fetchEventItem = () =>
@@ -75,7 +93,7 @@
         },
         reject: (err) => {
           requestCycle.BAD();
-          reject();
+          reject(err);
         },
       });
     });

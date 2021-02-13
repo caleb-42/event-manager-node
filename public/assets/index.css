@@ -27,7 +27,8 @@ nav .header {
   margin: 0 auto;
 }
 nav .bottom .arrange img {
-  margin-left: 1rem;
+  margin-left: 2rem;
+  width: 1.8rem;
   cursor: pointer;
   opacity: 0.5;
 }
@@ -149,7 +150,7 @@ main .list-item .date {
   justify-content: center;
   align-items: center;
   height: 90px;
-  width: 70px;
+  min-width: 70px;
   font-size: 1rem;
   font-weight: 700;
   background: #fff;

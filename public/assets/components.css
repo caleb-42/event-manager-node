@@ -56,7 +56,14 @@
 #app-drawer #links {
   position: absolute;
   width: 100%;
-  top: 170px;
+  top: 120px;
+}
+@media (min-width: 578px) {
+  #app-drawer #links {
+    position: absolute;
+    width: 100%;
+    top: 170px;
+  }
 }
 #app-drawer #links .link {
   padding: 2.5rem 3rem;

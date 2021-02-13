@@ -29,7 +29,8 @@ nav .header .search {
   margin-right: 1rem;
 }
 nav .bottom .arrange img {
-  margin-left: 1rem;
+  margin-left: 2rem;
+  width: 1.8rem;
   cursor: pointer;
   opacity: 0.5;
 }
@@ -229,7 +230,7 @@ body main .list-item .meta button {
   justify-content: center;
   align-items: center;
   height: 90px;
-  width: 70px;
+  min-width: 70px;
   font-size: 1rem;
   font-weight: 700;
   background: #fff;
@@ -244,7 +245,7 @@ body main .list-item .meta button {
 /* ------------modal CSS ------------ */
 #modal #modal-dialog {
   max-width: 716px;
-  height: 620px;
+  height: 650px;
 }
 #modal-dialog form {
   padding: 20px;
