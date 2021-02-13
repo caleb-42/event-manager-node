@@ -11,12 +11,13 @@
   switchEvents("#new-event", ["#modal", "close", "remove"]);
 
   document.querySelectorAll("input.search-input").forEach((item) => {
-    console.log(item);
     item.addEventListener("input", (e) => {
-      console.log("asc", e.target.value);
       searchEvents(e.target.value);
     });
   });
+
+  const formObj = document.querySelector("form.modal-event");
+  const reqResError = document.querySelector(".req-res .error-hd");
 
   const makePageList = (res) => {
     let list = "";
@@ -37,19 +38,35 @@
 
   /* --------ACTIONS------- */
   const makeEvent = (form) => {
+    for (let item in form) {
+      if (!form[item])
+        return (reqResError.innerHTML = "all fields are required");
+    }
     form.start_date = new Date(form.start_date).toISOString();
     form.end_date = new Date(form.end_date).toISOString();
-
-    createEventItem(form).then(() => {
-      switchClass("#modal", "close", "add");
-    });
+    reqResError.innerHTML = "";
+    switchClass(".req-res", "async", "add");
+    createEventItem(form)
+      .then(() => {
+        formObj.name.value = "";
+        formObj.location.value = "";
+        formObj.start_date.valueAsDate = null;
+        formObj.end_date.valueAsDate = null;
+        formObj.description.value = "";
+        switchClass("#modal", "close", "add");
+      })
+      .catch((e) => {
+        reqResError.innerHTML = e;
+      })
+      .finally(() => {
+        switchClass(".req-res", "async", "remove");
+      });
   };
 
   const createFormSubmit = (form, submitMethod = () => {}) => {
     document.querySelector(`${form} .submit`).addEventListener("click", (e) => {
       let formObj = document.querySelector(`form${form}`);
       const formVals = formToJson(formObj);
-      console.log(formVals);
       submitMethod(formVals);
     });
   };
@@ -61,7 +78,6 @@
     server({
       url: "events" /* "error" */,
       resolve: (res) => {
-        console.log(res);
         if (res.data.length === 0) {
           requestCycle.BAD();
           return (document.querySelector(
@@ -83,7 +99,6 @@
     server({
       url: `events?q=${search}` /* "error" */,
       resolve: (res) => {
-        console.log(res);
         if (res.data.length === 0) {
           requestCycle.BAD();
           return (document.querySelector(
@@ -110,12 +125,11 @@
           if (res.data) {
             fetchEvents();
           }
-          console.log(res);
-          resolve();
+          resolve(res);
         },
         reject: (err) => {
           requestCycle.BAD();
-          reject();
+          reject(err);
         },
       });
     });
@@ -131,7 +145,6 @@
           if (res.data) {
             fetchEvents();
           }
-          console.log(res);
           resolve();
         },
         reject: (err) => {

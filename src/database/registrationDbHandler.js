@@ -56,7 +56,6 @@ module.exports = class RegistrationDbHandler {
         key !== "email" ? "'" + value + "'" : "'%" + value + "%'"
       }`;
 
-      console.log(curr, cond);
       return cond;
     }, "");
     const { rows } = await this.pool.query(

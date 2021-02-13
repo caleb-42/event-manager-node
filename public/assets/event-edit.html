@@ -89,9 +89,14 @@
                             type="date" placeholder="end_date" /></label>
 
                 </div>
-                <textarea maxlength="200" name="description" placeholder="description" class="w-100"
+                <textarea maxlength="600" name="description" placeholder="description" class="w-100"
                     rows="3"></textarea>
-                <button type="button" class="submit btn green-bg border-none anim ">save</button>
+                <div id="event-req-res"
+                    class="w-100 req-res d-flex justify-content-center align-items-center flex-column">
+                    <button type="button" class="submit btn green-bg border-none anim ">save</button>
+                    <div class="loader"></div>
+                    <div class="error-hd"></div>
+                </div>
             </form>
             <form class="modal-speaker flex-column align-items-center w-100 mx-auto">
                 <h1>ADD SPEAKERS</h1>
@@ -103,7 +108,12 @@
                     <input type="text" style="width: 100%;" name="desc" placeholder="job title" />
                 </div>
 
-                <button type="button" class="submit btn green-bg border-none anim modal-close-btn">save</button>
+                <div id="speakers-req-res"
+                    class="w-100 req-res d-flex justify-content-center align-items-center flex-column">
+                    <button type="button" class="submit btn green-bg border-none anim ">save</button>
+                    <div class="loader"></div>
+                    <div class="error-hd"></div>
+                </div>
             </form>
             <form class="text-center modal-event-type flex-column align-items-center w-100 mx-auto">
                 <h1>ADD EVENT TYPES</h1>
@@ -113,7 +123,12 @@
                             <option value="Meetup">Meetup</option>
                         </select></label>
                 </div>
-                <button type="button" class="submit btn green-bg border-none anim modal-close-btn">save</button>
+                <div id="event-type-req-res"
+                    class="w-100 req-res d-flex justify-content-center align-items-center flex-column">
+                    <button type="button" class="submit btn green-bg border-none anim ">save</button>
+                    <div class="loader"></div>
+                    <div class="error-hd"></div>
+                </div>
             </form>
         </div>
     </div>

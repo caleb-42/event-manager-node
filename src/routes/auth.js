@@ -13,7 +13,6 @@ const loginMethods = {
         { username: user.username },
         ["username"]
       );
-      console.log(foundUser);
       if (!foundUser) {
         return utils.response(res, {
           error: "Access denied, User does not exist",
@@ -63,7 +62,6 @@ module.exports = {
     if (loginMethods[data.method]) {
       return loginMethods[data.method](data, res);
     } else {
-      console.log(res);
       return utils.response(res, {
         error: "unhandled http method",
         status: 405,

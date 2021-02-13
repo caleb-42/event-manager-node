@@ -9,7 +9,6 @@ dotenv.config();
 module.exports = {
   createRegistrationValidation: (data, res, next) => {
     const result = validation.validateCreateRegistration(data.body);
-    console.log("result", result);
     if (result.error) {
       return utils.response(res, {
         status: 400,

@@ -22,7 +22,6 @@ const methods = {
           { event_id: body.event_id, email: body.email },
           ["event_id", "email"]
         );
-        console.log(foundRegistration);
         if (foundRegistration) {
           return utils.response(res, {
             message: "you are not allowed to register for an event twice",
@@ -87,7 +86,6 @@ module.exports = {
   },
   registrationNotify: async (data, res) => {
     if (data.method !== "PATCH") {
-      console.log(res);
       return utils.response(res, {
         error: "unhandled http method",
         status: 405,
@@ -98,7 +96,6 @@ module.exports = {
       const {
         queryString: { id },
       } = data;
-      console.log(id);
       let foundRegistration = await dbHandler.registration.getRegistration(id);
       if (!foundRegistration) {
         return utils.response(res, {

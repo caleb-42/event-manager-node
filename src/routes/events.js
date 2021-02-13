@@ -18,7 +18,6 @@ const methods = {
             { name: newEvent.name },
             ["name"]
           );
-          console.log("foundEvent", foundEvent);
           if (foundEvent) {
             return utils.response(res, {
               message: "event already exist",
@@ -46,7 +45,6 @@ const methods = {
       const {
         queryString: { id, q },
       } = data;
-      console.log(typeof id);
       if (id !== undefined && id !== "") {
         payload = await dbHandler.event.getEvent(id);
         if (!payload)
@@ -65,7 +63,6 @@ const methods = {
         status: 200,
       });
     } catch (e) {
-      console.log(e);
       return utils.response(res, {
         message: "Server Error",
         status: 500,
@@ -80,7 +77,6 @@ const methods = {
             body: event,
             queryString: { id },
           } = data;
-          console.log(id);
           if (event.name) {
             let foundEventName = await dbHandler.find(
               "events",
@@ -115,7 +111,6 @@ const methods = {
             status: 200,
           });
         } catch (e) {
-          console.log(e);
           return utils.response(res, {
             message: "Server Error",
             status: 500,
@@ -129,7 +124,6 @@ const methods = {
         const {
           queryString: { id },
         } = data;
-        console.log(id);
         let foundEvent = await dbHandler.find("events", { id }, ["id"]);
         if (!foundEvent)
           return utils.response(res, {
@@ -147,7 +141,6 @@ const methods = {
           status: 200,
         });
       } catch (e) {
-        console.log(e);
         return utils.response(res, {
           message: "Server Error",
           status: 500,

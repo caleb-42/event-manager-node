@@ -9,7 +9,6 @@ dotenv.config();
 module.exports = {
   createEventValidation: (data, res, next) => {
     const result = validation.validateCreateEvent(data.body);
-    console.log("result", result);
     if (result.error) {
       return utils.response(res, {
         status: 400,
@@ -21,7 +20,6 @@ module.exports = {
   },
   updateEventValidation: (data, res, next) => {
     const result = validation.validateUpdateEvent(data.body);
-    console.log("result", result);
     if (result.error) {
       return utils.response(res, {
         status: 400,

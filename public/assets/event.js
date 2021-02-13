@@ -30,7 +30,6 @@
     document.querySelector(`${form} .submit`).addEventListener("click", (e) => {
       let formObj = document.querySelector(`form${form}`);
       const formVals = formToJson(formObj);
-      console.log(formVals);
       submitMethod(formVals);
     });
   };
@@ -52,7 +51,6 @@
             ".server-message"
           ).innerHTML = errorMsg("Item not found"));
         }
-        console.log(res);
         switchEvents("#register", ["#modal", "close", "remove"]);
         requestCycle.GOOD();
         makePageItem(res.data);
@@ -73,7 +71,6 @@
           if (res.data) {
             fetchEventItem();
           }
-          console.log(res);
           resolve();
         },
         reject: (err) => {

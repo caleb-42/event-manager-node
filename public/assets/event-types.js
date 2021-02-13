@@ -8,6 +8,9 @@
   switchEvents("#app-drawer .back-arrows", ["#app-drawer", "close", "add"]);
   switchEvents("#new-event", ["#modal", "close", "remove"]);
 
+  const formObj = document.querySelector("form.modal-event-type");
+  const reqResError = document.querySelector(".req-res .error-hd");
+
   const makePageList = (res) => {
     let list = "";
     res.map((item) => {
@@ -15,34 +18,33 @@
     });
     document.querySelector(".item-con").innerHTML = list;
     document.querySelectorAll(".item .remove-icon").forEach((item) => {
-      console.log(item);
       item.addEventListener("click", (e) => {
-        console.log(item);
         deleteEventType(item.dataset.id);
       });
     });
-    /* document.querySelectorAll(".item-con .item").forEach((item) => {
-      item.addEventListener("click", (e) => {
-        console.log(e.target);
-        if (e.target.classList.contains("remove-icon")) {
-          deleteEventType(item.dataset.name);
-        }
-      });
-    }); */
   };
 
   /* --------ACTIONS------- */
   const makeEventType = (form) => {
-    createEventType(form).then(() => {
-      switchClass("#modal", "close", "add");
-    });
+    reqResError.innerHTML = "";
+    switchClass(".req-res", "async", "add");
+    createEventType(form)
+      .then(() => {
+        formObj.name.value = "";
+        switchClass("#modal", "close", "add");
+      })
+      .catch((e) => {
+        reqResError.innerHTML = e;
+      })
+      .finally(() => {
+        switchClass(".req-res", "async", "remove");
+      });
   };
 
   const createFormSubmit = (form, submitMethod = () => {}) => {
     document.querySelector(`${form} .submit`).addEventListener("click", (e) => {
       let formObj = document.querySelector(`form${form}`);
       const formVals = formToJson(formObj);
-      console.log(formVals);
       submitMethod(formVals);
     });
   };
@@ -59,7 +61,6 @@
             ".server-message"
           ).innerHTML = errorMsg("No Records found"));
         }
-        console.log(res);
         makePageList(res.data);
         requestCycle.GOOD();
       },
@@ -80,12 +81,11 @@
           if (res.data) {
             fetchEventTypes();
           }
-          console.log(res);
           resolve();
         },
         reject: (err) => {
           requestCycle.BAD();
-          reject();
+          reject(err);
         },
       });
     });
@@ -101,7 +101,6 @@
           if (res.data) {
             fetchEventTypes();
           }
-          console.log(res);
           resolve();
         },
         reject: (err) => {

@@ -181,6 +181,25 @@
   display: none;
 }
 
+#modal .req-res.async .loader {
+  display: block;
+}
+
+#modal .req-res .loader {
+  display: none;
+}
+
+#modal .req-res.async button,
+#modal .req-res.async .error-hd {
+  display: none;
+}
+
+#modal .req-res .error-hd {
+  text-align: center;
+  font-size: 0.85rem;
+  max-width: 400px;
+}
+
 @keyframes appear {
   from {
     opacity: 0;
