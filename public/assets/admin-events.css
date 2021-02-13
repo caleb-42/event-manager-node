@@ -149,6 +149,21 @@ body.grid main .grid-item .content .date {
 body.grid main .grid-item.special {
   background: #ce69a0;
 }
+body main .item.special .list-item .date {
+  background: #eeb66d;
+  color: #fff;
+}
+
+body main .item.special .list-item .special-event-type {
+  color: #eeb66d;
+}
+body main .item.special .grid-item {
+  background: #eeb66d;
+  color: #fff;
+}
+body main .item.special .grid-item .meta {
+  color: #fff;
+}
 
 /* -------list Item CSS ---------- */
 body.grid main .list-item {

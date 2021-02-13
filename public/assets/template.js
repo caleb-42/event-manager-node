@@ -1,4 +1,7 @@
 const eventItem = (item, uri) => {
+  let isSpecial = item.event_types.find((item) => {
+    return ["Leap", "Recruiting Mission", "Hackathon"].includes(item.name);
+  });
   let [day, month, year] = new Date(item.start_date)
     .toLocaleString("default", {
       month: "short",
@@ -7,7 +10,9 @@ const eventItem = (item, uri) => {
     })
     .split(" ");
   return `
-    <div onclick="window.location='${uri}/${item.id}'" class="item w-100">
+    <div onclick="window.location='${uri}/${item.id}'" class="item w-100 ${
+    isSpecial ? "special" : ""
+  }">
         <div class="list-item">
             <div class="date">
                 <p>${day}</p>
@@ -21,7 +26,17 @@ const eventItem = (item, uri) => {
                 <div class="meta">
                     <p class="event-types">${
                       item.event_types
-                        ? item.event_types.map((val) => val.name).join(" | ")
+                        ? item.event_types
+                            .map((val) =>
+                              [
+                                "Leap",
+                                "Recruiting Mission",
+                                "Hackathon",
+                              ].includes(val.name)
+                                ? `<span class="special-event-type">${val.name}</span>`
+                                : val.name
+                            )
+                            .join(" | ")
                         : ""
                     }</p>
                 </div>
@@ -51,6 +66,9 @@ const eventItem = (item, uri) => {
 };
 
 const eventEditItem = (item, uri) => {
+  let isSpecial = item.event_types.find((item) => {
+    return ["Leap", "Recruiting Mission", "Hackathon"].includes(item.name);
+  });
   let [day, month, year] = new Date(item.start_date)
     .toLocaleString("default", {
       month: "short",
@@ -59,7 +77,9 @@ const eventEditItem = (item, uri) => {
     })
     .split(" ");
   return `
-    <div data-id="${item.id}" data-path="${uri}/${item.id}" class="item w-100">
+    <div data-id="${item.id}" data-path="${uri}/${item.id}" class="item w-100 ${
+      isSpecial ? "special" : ""
+    }">
         <div class="list-item">
             <div class="date">
                 <p>${day}</p>
@@ -73,7 +93,17 @@ const eventEditItem = (item, uri) => {
                 <div class="meta">
                     <p class="event-types">${
                       item.event_types
-                        ? item.event_types.map((val) => val.name).join(" | ")
+                        ? item.event_types
+                            .map((val) =>
+                              [
+                                "Leap",
+                                "Recruiting Mission",
+                                "Hackathon",
+                              ].includes(val.name)
+                                ? `<span class="special-event-type">${val.name}</span>`
+                                : val.name
+                            )
+                            .join(" | ")
                         : ""
                     }</p>
                       <button class="btn red anim remove-event">Delete</button>

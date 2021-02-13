@@ -157,8 +157,24 @@ main .list-item .date {
   color: #6c6c6c;
   border-radius: 8px;
 }
-main .list-item .date.special {
+/* main .list-item .date.special {
   background: #ce69a0;
+} */
+
+body main .item.special .list-item .date {
+  background: #eeb66d;
+  color: #fff;
+}
+
+body main .item.special .list-item .special-event-type {
+  color: #eeb66d;
+}
+body main .item.special .grid-item {
+  background: #eeb66d;
+  color: #fff;
+}
+body main .item.special .grid-item .meta {
+  color: #fff;
 }
 
 /* grid item */
