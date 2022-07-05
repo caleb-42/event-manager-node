@@ -25,8 +25,8 @@ Bambi event manager application. TEST
 - Registration search and notification `ADMIN`
 
 ## Admin login 
-  username - super-admin
-  password - admin123
+  - username - super-admin
+  - password - admin123
 
 ## NOTICE
 
