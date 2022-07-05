@@ -24,6 +24,10 @@ Bambi event manager application. TEST
 - EventType Creation/Edit/Delete `ADMIN`
 - Registration search and notification `ADMIN`
 
+## Admin login 
+  username - super-admin
+  password - admin123
+
 ## NOTICE
 
 Details to log in as admin have been sent to BorderlessHR Team Email.
