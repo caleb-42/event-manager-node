@@ -12,7 +12,7 @@ Bambi event manager application. TEST
 
 ## Deployed App
 
-[Bambi Event Manager](https://event-manager-node.herokuapp.com/)
+[Bambi Event Manager](https://doubtful-ox-apron.cyclic.app/)
 
 ## Features
 
