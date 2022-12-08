@@ -11,8 +11,7 @@ const { NODE_ENV, DATABASE_TEST, DATABASE_URL } = process.env;
 class DbHandler {
   constructor() {
     this.pool = new Pool({
-      connectionString:
-        NODE_ENV === "production" ? `${DATABASE_URL}` : DATABASE_TEST,
+      connectionString: DATABASE_URL,
       ...(NODE_ENV === "production"
         ? { ssl: { rejectUnauthorized: false } }
         : {}),
