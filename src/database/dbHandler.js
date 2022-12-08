@@ -6,7 +6,7 @@ const RegistrationDbHandler = require("./registrationDbHandler");
 
 dotenv.config();
 
-const { NODE_ENV, DATABASE_TEST, DATABASE_URL } = process.env;
+const { NODE_ENV, DATABASE_URL } = process.env;
 
 class DbHandler {
   constructor() {
