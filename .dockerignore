@@ -1,4 +1,4 @@
 .env
-.db_env
+db_env
 .git
 .gitignore
